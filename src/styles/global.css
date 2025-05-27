@@ -22,6 +22,11 @@ a {
 a:hover {
   color: var(--accent-dark);
 }
+
+figure {
+  margin: 0 auto;
+  width: fit-content;
+}
 :root {
   --heading-hash-offset-1: 1.75rem;
   --heading-hash-offset-2: 1.75rem;
@@ -61,4 +66,22 @@ figcaption {
 }
 .block-list.accent > li {
   border-left: 2.5px solid var(--accent);
+}
+
+/* Outline */
+
+.outline-item.x-heading-1 {
+  margin-left: 0em;
+}
+.outline-item.x-heading-2 {
+  margin-left: 1em;
+}
+.outline-item.x-heading-3 {
+  margin-left: 2em;
+}
+.outline-item.x-heading-4 {
+  margin-left: 3em;
+}
+.outline-item.x-heading-5 {
+  margin-left: 4em;
 }
