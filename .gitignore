@@ -24,3 +24,6 @@ pnpm-workspace.yaml
 
 # jetbrains setting folder
 .idea/
+
+# local development files
+local/
