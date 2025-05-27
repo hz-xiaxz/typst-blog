@@ -12,9 +12,12 @@ const allTags = [
 
 const postsByTag = allTags.reduce(
   (acc, tagName) => {
-    acc[tagName] = allPosts.filter(
-      (post) => post.data.tags && post.data.tags.includes(tagName)
-    );
+    acc[tagName] = allPosts
+      .filter((post) => post.data.tags && post.data.tags.includes(tagName))
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+      );
     return acc;
   },
   {} as Record<string, typeof allPosts>
