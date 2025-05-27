@@ -1,15 +1,15 @@
 ---
 import BlogPostLayout from "$layouts/BlogPostLayout.astro";
-import Layout from "$layouts/BlogPostLayout.astro";
+import { kSiteOwner } from "$consts";
 // @ts-ignore
 import AboutContent from "../../content/other/about.typ?html&body";
 ---
 
 <BlogPostLayout
   id={"about"}
-  title="About Me"
-  description="Things about Myriad-Dreamin"
-  date={new Date("April 25 2025")}
+  title="关于我"
+  description={`关于 ${kSiteOwner}.`}
+  date={new Date("2023-06-14")}
 >
   <AboutContent />
 </BlogPostLayout>

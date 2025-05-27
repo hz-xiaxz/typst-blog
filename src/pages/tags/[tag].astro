@@ -1,9 +1,9 @@
 ---
-import TagsPage from "./index.astro";
 import { getCollection } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsList from "../../components/PostsList.astro";
+import { kSiteTitle } from "$consts";
 
 interface Props {
   tag: string;
@@ -31,7 +31,10 @@ const filteredPostsByTag = allPosts.filter(
 );
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle={`${tag} 标签 | ${kSiteTitle}`}
+  pageDescription={`${kSiteTitle} 中所有关于 ${tag} 的文章.`}
+>
   <div class="w-full mx-auto py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body space-y-4">

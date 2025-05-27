@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsList from "../../components/PostsList.astro";
 import { getCollection } from "astro:content";
+import { kSiteTitle, kUrlBase } from "$consts";
 
 const allPosts = await getCollection("blog");
 
@@ -20,7 +21,10 @@ const postsByTag = allTags.reduce(
 );
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle={`所有标签 | ${kSiteTitle}`}
+  pageDescription=`${kSiteTitle} 的所有标签.`
+>
   <div class="w-full mx-auto py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
@@ -32,7 +36,7 @@ const postsByTag = allTags.reduce(
           {
             allTags.map((tagName) => (
               <a
-                href={`/tags/${tagName}`}
+                href={`${kUrlBase}/tags/${tagName}`}
                 class="badge badge-outline hover:badge-primary transition-colors"
               >
                 {tagName}
@@ -63,7 +67,10 @@ const postsByTag = allTags.reduce(
 
             {postsByTag[tagName].length > 5 && (
               <div class="text-center">
-                <a href={`/tags/${tagName}`} class="btn btn-outline btn-sm">
+                <a
+                  href={`${kUrlBase}/tags/${tagName}`}
+                  class="btn btn-outline btn-sm"
+                >
                   查看更多 {tagName} 文章
                 </a>
               </div>

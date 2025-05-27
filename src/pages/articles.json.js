@@ -9,8 +9,11 @@ export async function GET() {
     collection: post.collection,
     data: {
       title: post.data.title,
+      date: post.data.date,
     },
-  }));
+  })).sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
 
   return Response.json(posts);
 }

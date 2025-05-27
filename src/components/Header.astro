@@ -16,12 +16,13 @@ import {
 >
   <div class="max-w-5xl mx-auto navbar">
     <div class="flex-1">
-      <a class="btn btn-ghost text-xl" href="/">{kSiteTitle}</a>
+      <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
     </div>
     <div class="flex-none">
       <ul class="space-x-2">
-        <a class={classSmallNavItem} href="/archive/">归档</a>
-        <a class={classSmallNavItem} href="/about/">关于</a>
+        <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
+        <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
+        <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
       </ul>
       <ThemeIcon />
     </div>

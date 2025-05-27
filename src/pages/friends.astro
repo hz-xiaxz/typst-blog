@@ -1,0 +1,26 @@
+---
+import { kFriendLinks, kSiteOwner } from "$consts";
+import BlogPostLayout from "$layouts/BlogPostLayout.astro";
+---
+
+<BlogPostLayout
+  id="friends"
+  title="友链"
+  description={`${kSiteOwner} 的朋友们.`}
+  date={new Date("2025-05-27")}
+>
+  <main>
+    <ul>
+      {
+        kFriendLinks.map((link) => (
+          <li>
+            <a href={link.url} target="_blank">
+              {link.name}
+            </a>
+            <p>{link.desc}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BlogPostLayout>

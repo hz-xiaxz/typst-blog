@@ -5,43 +5,22 @@ import * as config from "../config.json";
 
 
 /**
- * Whether to enable backend, required by click and comment feature.
- */
-export const kEnableBackend = true;
-/**
- * Whether to enable click tracking.
- */
-export const kEnableClick = true && kEnableBackend;
-/**
  * Whether to enable comment posting and viewing.
  */
-export const kEnableComment = true && kEnableBackend;
+export const kEnableComment = true;
 /**
  * Whether to enable like reaction.
  */
-export const kEnableReaction = true && kEnableBackend;
-/**
- * Whether to enable post search (needs Js).
- */
-export const kEnableSearch = true;
-/**
- * Whether to enable PDF Archive.
- */
-export const kEnableArchive = true;
-/**
- * Whether to enable printing
- */
-export const kEnablePrinting = true && kEnableArchive;
+export const kEnableReaction = true && kEnableComment;
 
+/**
+ * The name of the owner of the website.
+ */
+export const kSiteOwner = config.SITE_OWNER;
 /**
  * The title of the website.
  */
 export const kSiteTitle = config.SITE_TITLE;
-
-/**
- * The title of the website.
- */
-export const kSiteLogo = "PoeMagie";
 /**
  * The title of the website, used in the index page.
  */
@@ -50,10 +29,6 @@ export const kSiteIndexTitle = config.SITE_INDEX_TITLE;
  * The description of the website.
  */
 export const kSiteDescription = config.SITE_DESCRIPTION;
-/**
- * The baidu verification code, used for SEO.
- */
-export const kBaiduVeriCode = config.BAIDU_VERIFICATION_CODE;
 
 /**
  * The URL base of the website.
@@ -62,37 +37,37 @@ export const kBaiduVeriCode = config.BAIDU_VERIFICATION_CODE;
  */
 export const kUrlBase = config.URL_BASE.replace(/\/$/, "");
 
-/**
- * The click info obtained from the backend.
- */
 
 /**
  * The friend link info.
  */
 export const kFriendLinks = [
   {
-    name: "7mile",
-    url: "https://7li.moe/",
-    desc: "一切都有其意义，包括停滞不前的日子。",
+    name: "sjfh's Homepage",
+    url: "https://sjfh.top/",
+    desc: "无问西东.",
   },
   {
-    name: "Margatroid",
-    url: "https://blog.mgt.moe/",
-    desc: "SIGSLEEP Fellow",
+    name: "JrHimself",
+    url: "https://www.jrhim.com/",
+    desc: "融雪之前, 牧神搭上春色的火车, 而日光在我们之间.",
   },
 ];
+
+
 /**
- * A candidate list of servers to cover people in different regions.
+ * The social links info.
  */
-export const kServers = (() => {
-  // const BACKEND_ADDR = "http://localhost:13333";
-  const BACKEND_ADDR = "https://glittery-valkyrie-8fbf14.netlify.app/api";
+export const kSocialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/paran3xus",
+    icon: "ri:github-fill",
+  },
+  {
+    name: "Telegram",
+    url: "https://t.me/paran3xus",
+    icon: "ri:telegram-fill",
+  },
+];
 
-  const kServers = [BACKEND_ADDR];
-
-  if (kEnableBackend && kServers.length === 0) {
-    throw new Error("kServers is empty, please set kServers in consts.ts");
-  }
-
-  return kServers;
-})();

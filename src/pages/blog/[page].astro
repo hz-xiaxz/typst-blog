@@ -4,6 +4,7 @@ import PostsList from "../../components/PostsList.astro";
 import Pagination from "../../components/Pagination.astro";
 import { getCollection } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
+import { kSiteTitle } from "$consts";
 
 interface Props {
   page: Page<number>;
@@ -26,7 +27,10 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 const offset = (page.currentPage - 1) * 10;
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle={`文章 | ${kSiteTitle}`}
+  pageDescription={`${kSiteTitle} 中的文章.`}
+>
   <div class="w-full mx-auto py-2">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body space-y-4">
@@ -35,7 +39,7 @@ const offset = (page.currentPage - 1) * 10;
           <div class="text-sm text-base-content/70">
             第 {page.currentPage} 页, 共 {page.lastPage} 页 | 显示 {
               offset + 1
-            }-{Math.min(offset + 10, page.total)} 项, 共 {page.total} 项
+            }-{Math.min(offset + 10, page.total)} 篇, 共 {page.total} 篇
           </div>
         </div>
 

@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import type { APIContext } from "astro";
 import { kUrlBase, kSiteTitle, kSiteDescription } from "$consts";
 
-type Kind = "blog" | "archive";
+type Kind = "blog";
 type Item = CollectionEntry<Kind>;
 const fromCollection = async (c: Kind, sub: string, suf: string) =>
   (await getCollection(c)).map(
@@ -24,7 +24,6 @@ export async function GET(context: APIContext) {
 
   const items = await Promise.all([
     fromCollection("blog", "article", "/"),
-    fromCollection("archive", "archive", ".pdf"),
   ]);
   return rss({
     title: kSiteTitle,

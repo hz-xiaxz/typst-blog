@@ -1,5 +1,5 @@
 ---
-import { kUrlBase } from "$consts";
+import { kSiteOwner, kUrlBase } from "$consts";
 
 const today = new Date();
 ---
@@ -25,7 +25,8 @@ const today = new Date();
     </div>
 
     <p>
-      Copyright © 2023 - {new Date().getFullYear()} ParaN3xus. All rights reserved.
+      Copyright © 2023 - {new Date().getFullYear()}
+      {kSiteOwner}. All rights reserved.
       <br />
       Powered by Astro, DaisyUI and Typst.
       <br />

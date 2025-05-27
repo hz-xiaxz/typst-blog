@@ -1,4 +1,5 @@
 ---
+import { kUrlBase } from "$consts";
 import { Icon } from "astro-icon/components";
 
 const { page } = Astro.props;
@@ -63,7 +64,11 @@ const pageNumbers =
               <button class="join-item btn btn-primary">{pageNum}</button>
             ) : (
               <a
-                href={pageNum === 1 ? "/blog/" : `/blog/${pageNum}/`}
+                href={
+                  pageNum === 1
+                    ? `${kUrlBase}/blog/`
+                    : `${kUrlBase}/blog/${pageNum}/`
+                }
                 class="join-item btn btn-outline"
               >
                 {pageNum}

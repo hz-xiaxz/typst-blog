@@ -13,9 +13,9 @@ const pdfCompiler = NodeCompiler.create({
   fontArgs: [{ fontPaths: [resolve(projectRoot, "assets/fonts/")] }],
 });
 
-export async function renderMonthlyPdf(mainFilePath: string): Promise<Buffer> {
+export async function renderPdf(mainFileContent: string): Promise<Buffer> {
   return pdfCompiler.pdf({
-    mainFilePath: resolve(projectRoot, mainFilePath),
+    mainFileContent: mainFileContent,
     inputs: {
       "build-kind": "monthly",
     },

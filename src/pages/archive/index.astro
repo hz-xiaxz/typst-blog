@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsList from "../../components/PostsList.astro";
 import { getCollection } from "astro:content";
+import Icon from "node_modules/astro-icon/components/Icon.astro";
+import { kSiteTitle, kUrlBase } from "$consts";
 
 const allPosts = await getCollection("blog");
 
@@ -24,7 +26,10 @@ const postsByYear = allYears.reduce(
 );
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle={`文章归档 | ${kSiteTitle}`}
+  pageDescription={`${kSiteTitle} 中所有文章的归档信息`}
+>
   <div class="w-full mx-auto py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
@@ -36,8 +41,8 @@ const postsByYear = allYears.reduce(
           {
             allYears.map((year) => (
               <a
-                href={`/archive/${year}`}
-                class="badge badge-outline hover:badge-primary transition-colors"
+                href={`${kUrlBase}/archive/${year}`}
+                class="badge badge-outline hover:text-primary transition-colors"
               >
                 {year}
                 <span class="ml-1 text-xs opacity-60">
@@ -58,8 +63,19 @@ const postsByYear = allYears.reduce(
               <h2 class="card-title text-2xl">
                 <span class="badge badge-primary">{year}</span>
               </h2>
-              <div class="text-sm text-base-content/70">
-                {postsByYear[year].length} 篇文章
+
+              <div class="flex items-center gap-4">
+                <div class="text-sm text-base-content/70">
+                  共 {postsByYear[year].length || 0} 篇文章
+                </div>
+                <a
+                  href={`${kUrlBase}/archive/${year}.pdf`}
+                  class="btn btn-outline btn-sm gap-2"
+                  download={`${year}-archive.pdf`}
+                >
+                  <Icon name="ri:file-download-line" />
+                  下载 PDF 归档
+                </a>
               </div>
             </div>
 

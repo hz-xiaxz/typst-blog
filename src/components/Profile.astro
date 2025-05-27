@@ -1,18 +1,6 @@
 ---
+import { kSiteOwner, kSocialLinks } from "$consts";
 import { Icon } from "astro-icon/components";
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/paran3xus",
-    icon: "ri:github-fill",
-  },
-  {
-    name: "Telegram",
-    url: "https://t.me/paran3xus",
-    icon: "ri:telegram-fill",
-  },
-];
 ---
 
 <div class="max-w-80 card card-compact bg-base-100 shadow-xl mx-auto">
@@ -20,11 +8,11 @@ const socialLinks = [
     <img class="object-cover h-48" src="/profile-banner.png" alt="Avatar" />
   </figure>
   <div class="card-body">
-    <p class="text-center text-lg font-bold">ParaN3xus</p>
+    <p class="text-center text-lg font-bold">{kSiteOwner}</p>
     <p class="text-center">希望少犯之前犯过的错.</p>
     <div class="grid grid-cols-2 gap-3">
       {
-        socialLinks.map((link) => (
+        kSocialLinks.map((link) => (
           <a
             href={link.url}
             target="_blank"

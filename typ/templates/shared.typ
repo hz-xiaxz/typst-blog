@@ -19,7 +19,7 @@
 
 #let pdf-fonts = (
   "Libertinus Serif",
-  "Source Han Serif SC",
+  "Noto Serif CJK SC",
 )
 
 #let code-font = (
@@ -85,7 +85,7 @@
       tag: "p",
       theme => {
         set text(fill: theme.main-color)
-        p-frame(attrs: (class: "block-equation"), it)
+        span-frame(attrs: (class: "block-equation"), it)
       },
     )
   } else {

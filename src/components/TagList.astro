@@ -12,7 +12,7 @@ const { tags, classes } = Astro.props;
 <div class="flex gap-1">
   {
     tags.map((tag) => (
-      <a href={`/tags/${tag}/`} class={classes}>
+      <a href={`${kUrlBase}/tags/${tag}/`} class={classes}>
         {tag}
       </a>
     ))

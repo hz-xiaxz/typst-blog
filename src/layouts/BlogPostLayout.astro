@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "$components/FormattedDate.astro";
 import Comment from "$components/Comment.astro";
-import { kEnableComment, kUrlBase } from "$consts";
+import { kEnableComment, kSiteTitle, kUrlBase } from "$consts";
 import BaseLayout from "./BaseLayout.astro";
 import TagList from "$components/TagList.astro";
 
@@ -13,21 +13,12 @@ interface IdExt {
 type Props = CollectionEntry<"blog">["data"] & (IdExt | { id: false });
 
 const { id, title, description, date, updatedDate, tags } = Astro.props;
-
-const pdfPage = await (async () => {
-  const pdfIndex = `blog-${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`;
-  // const archive = await getCollection("archive");
-  const month = null; //archive.find((m) => m.id === pdfIndex);
-  if (month) {
-    return `${kUrlBase}/archive/${pdfIndex}.pdf`;
-  } else {
-    return undefined;
-  }
-})();
 ---
 
-<!-- BlogPostLayout.astro -->
-<BaseLayout>
+<BaseLayout
+  pageTitle={`${title} | ${kSiteTitle}`}
+  pageDescription={description}
+>
   <main class="container max-w-6xl px-2 flex flex-col flex-1">
     <article class="w-full mx-auto flex-1">
       <div class="prose prose-lg max-w-none">
@@ -35,37 +26,46 @@ const pdfPage = await (async () => {
           <div
             class="flex flex-wrap items-center gap-2 text-sm opacity-70 mb-4"
           >
-            <FormattedDate date={date} />
             {
-              updatedDate && (
-                <span class="ml-1">
-                  , Last updated on <FormattedDate date={updatedDate || date} />
-                </span>
-              )
-            }
-            {
-              tags && tags.length > 0 && (
-                <>
-                  <span class="divider divider-horizontal mx-1" />
+              [
+                date && (
+                  <span>
+                    <FormattedDate date={date} />
+                    {updatedDate && (
+                      <span class="ml-1">
+                        , Last updated on{" "}
+                        <FormattedDate date={updatedDate || date} />
+                      </span>
+                    )}
+                  </span>
+                ),
+                tags && tags.length > 0 && (
                   <TagList
                     tags={tags}
                     classes="badge badge-outline hover:text-blue-500 not-prose"
                   />
-                </>
-              )
-            }
-            {
-              id && (
-                <>
-                  <span class="divider divider-horizontal mx-1" />
-                  <span id="vercount_value_page_pv" class="tabular-nums">
-                    Loading...
+                ),
+                id && (
+                  <span>
+                    <span id="vercount_value_page_pv" class="tabular-nums">
+                      Loading...
+                    </span>{" "}
+                    views
                   </span>
-                  views
-                </>
-              )
+                ),
+              ]
+                .filter(Boolean)
+                .map((element, index, array) => (
+                  <>
+                    {element}
+                    {index < array.length - 1 && (
+                      <span class="divider divider-horizontal mx-1" />
+                    )}
+                  </>
+                ))
             }
           </div>
+
           <h1 class="text-4xl font-bold mb-4">{title}</h1>
           <div class="divider"></div>
         </section>
