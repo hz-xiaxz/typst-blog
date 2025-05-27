@@ -14,8 +14,8 @@
 #let sys-is-html-target = ("target" in dictionary(std))
 #let is-web-target = is-web-target() or sys-is-html-target
 
-// #let default-kind = "post"
-#let default-kind = "monthly"
+#let default-kind = "post"
+// #let default-kind = "monthly"
 
 #let build-kind = sys.inputs.at("build-kind", default: default-kind)
 
@@ -200,7 +200,25 @@
     }
   }
   set quote(block: true)
-  show outline: it => if build-kind == "monthly" {
+
+  // html image path fix
+  show image: it => if is-web-target {
+    if type(it.source) == str {
+      html.elem(
+        "img",
+        attrs: (
+          src: "/post_" + it.source,
+        ),
+      )
+    } else {
+      it
+    }
+  } else {
+    it
+  }
+
+  // archive outline
+  show outline: it => if build-kind == "monthly" and is-pdf-target {
     show outline.entry: entry => {
       if "label" in entry.element.fields().keys() and entry.element.label == label("post-heading") {
         entry.indented(
@@ -213,7 +231,10 @@
       }
     }
     it
+  } else {
+    it
   }
+
   body
 }
 

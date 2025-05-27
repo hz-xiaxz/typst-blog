@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import { typst } from "astro-typst";
 import { URL_BASE } from "./config.json";
 import icon from "astro-icon";
+import copyAssetsIntegration from './integrations/copy-assets.js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,6 +26,7 @@ export default defineConfig({
         detect: () => "html",
       },
     }),
+    copyAssetsIntegration()
   ],
 
   vite: {
