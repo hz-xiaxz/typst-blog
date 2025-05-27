@@ -1,28 +1,46 @@
 ---
 import { kEnableReaction } from "$consts";
 
-const { id } = Astro.props;
+const giscusConfig = {
+  repo: "paran3xus/paran3xus.github.io",
+  repoId: "R_kgDOOxdsrA",
+  category: "General",
+  categoryId: "DIC_kwDOOxdsrM4CqpWy",
+  enableReaction: kEnableReaction,
+  defaultTheme: "dark",
+};
 ---
 
 <section class="mx-auto mt-12">
-  <script
-    is:inline
-    src="https://giscus.app/client.js"
-    data-repo="paran3xus/paran3xus.github.io"
-    data-repo-id="R_kgDOOxdsrA"
-    data-category="General"
-    data-category-id="DIC_kwDOOxdsrM4CqpWy"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled={kEnableReaction ? "1" : "0"}
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async></script>
+  <div id="giscus-container"></div>
 </section>
+
+<script define:vars={{ giscusConfig }}>
+  const script = document.createElement("script");
+  script.src = "https://giscus.app/client.js";
+  script.setAttribute("data-repo", giscusConfig.repo);
+  script.setAttribute("data-repo-id", giscusConfig.repoId);
+  script.setAttribute("data-category", giscusConfig.category);
+  script.setAttribute("data-category-id", giscusConfig.categoryId);
+  script.setAttribute("data-mapping", "pathname");
+  script.setAttribute("data-strict", "0");
+  script.setAttribute(
+    "data-reactions-enabled",
+    giscusConfig.enableReaction ? "1" : "0"
+  );
+  script.setAttribute("data-emit-metadata", "0");
+  script.setAttribute("data-input-position", "top");
+  script.setAttribute(
+    "data-theme",
+    localStorage.getItem("theme") || giscusConfig.defaultTheme
+  );
+  script.setAttribute("data-lang", "zh-CN");
+  script.setAttribute("data-loading", "lazy");
+  script.setAttribute("crossorigin", "anonymous");
+  script.async = true;
+
+  document.getElementById("giscus-container").appendChild(script);
+</script>
 
 <script is:inline>
   function updateGiscusTheme() {
