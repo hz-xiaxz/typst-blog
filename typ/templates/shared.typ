@@ -43,20 +43,6 @@
 #let span-frame = div-frame.with(tag: "span")
 #let p-frame = div-frame.with(tag: "p")
 
-#let auto-div-frame(body) = if is-web-target {
-  div-frame(body)
-} else {
-  body
-}
-
-#let auto-span-frame(body) = if is-web-target {
-  span-frame(body)
-} else {
-  body
-}
-
-#let auto-div-pseudocode-list(body) = auto-div-frame(pseudocode-list(body))
-
 
 // defaults
 #let (
@@ -397,3 +383,31 @@
       .join()
   }
 }
+
+
+#let auto-div-frame(body) = if is-web-target {
+  theme-frame(
+    tag: "div",
+    theme => {
+      set text(fill: theme.main-color)
+      div-frame(attrs: (class: "inline-equation"), body)
+    },
+  )
+} else {
+  body
+}
+
+#let auto-span-frame(body) = if is-web-target {
+  theme-frame(
+    tag: "span",
+    theme => {
+      set text(fill: theme.main-color)
+      span-frame(attrs: (class: "inline-equation"), body)
+    },
+  )
+} else {
+  body
+}
+
+#let auto-div-pseudocode-list(body) = auto-div-frame(pseudocode-list(body))
+
