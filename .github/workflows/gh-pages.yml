@@ -31,28 +31,39 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        with:
-          version: 10
-          run_install: false
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "pnpm"
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Download Fonts
         run: |
           mkdir -p ./assets/fonts
-          curl -L https://github.com/Myriad-Dreamin/shiroa/releases/download/v0.1.5/source-han-serif-font-assets.tar.gz | tar -xvz -C assets/fonts
-      - run: pnpm install
-      - run: pnpm build
+
+          # Noto Serif CJK
+          mkdir -p assets/fonts/noto-cjk
+          wget -O noto-serif-cjk.zip "https://github.com/notofonts/noto-cjk/releases/download/Serif2.003/04_NotoSerifCJKOTC.zip"
+          unzip -o noto-serif-cjk.zip -d assets/fonts/noto-cjk
+          rm noto-serif-cjk.zip
+
+          # Noto Sans CJK
+          wget -O noto-sans-cjk.zip "https://github.com/notofonts/noto-cjk/releases/download/Sans2.004/03_NotoSansCJK-OTC.zip"
+          unzip -o noto-sans-cjk.zip -d assets/fonts/noto-cjk
+          rm noto-sans-cjk.zip
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build Blog
+        run: bun run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./dist"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
