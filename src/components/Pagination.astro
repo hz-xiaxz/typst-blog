@@ -61,7 +61,9 @@ const pageNumbers =
                 ...
               </button>
             ) : pageNum === page.currentPage ? (
-              <button class="join-item btn btn-primary">{pageNum}</button>
+              <button class="join-item btn btn-active btn-outline">
+                {pageNum}
+              </button>
             ) : (
               <a
                 href={
