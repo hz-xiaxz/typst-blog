@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, watch, readdirSync, FSWatcher } from 'fs';
+import { copyFileSync, existsSync, mkdirSync, watch, readdirSync, type FSWatcher } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import type { AstroIntegration } from 'astro';
