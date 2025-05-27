@@ -15,8 +15,6 @@ const tagCounts = tags
     count: allPosts.filter((post) => post.data.tags?.includes(tag)).length,
   }))
   .sort((a, b) => b.count - a.count);
-
-// @ts-ignore
 ---
 
 <BaseLayout pageTitle={kSiteTitle} , pageDescription={kSiteDescription}>
