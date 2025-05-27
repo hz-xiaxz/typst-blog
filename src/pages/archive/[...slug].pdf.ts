@@ -59,12 +59,14 @@ function generateArchiveTypst(year: number, articles: any[]) {
     `#include "/content/article/${a.id}.typ"\n#pagebreak(weak: true)`
   ).join('\n\n');
 
+  const currentDate = new Date().toISOString().split('T')[0];
+
   return `#import "/typ/templates/monthly.typ": *
 
 #show: main.with(
   title: "${kSiteTitle} ${year}",
   desc: [Archive of Blog posts in ${year}],
-  date: "${year}-12-31",
+  date: "${currentDate}",
   tags: (
     archive-tags.blog-post,
   ),

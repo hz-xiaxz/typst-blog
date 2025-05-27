@@ -1,5 +1,7 @@
-
-#import "@preview/zebraw:0.5.2": zebraw-init, zebraw
+#import "@preview/cetz:0.3.4"
+#import "@preview/lovelace:0.3.0": pseudocode-list, line-label
+#import "@preview/zebraw:0.5.4": zebraw-init, zebraw
+#import "@preview/numbly:0.1.0": numbly
 #import "@preview/shiroa:0.2.3": is-web-target, is-pdf-target, plain-text, is-html-target, templates
 #import templates: *
 #import "mod.typ": *
@@ -8,12 +10,12 @@
 // Metadata
 #let is-html-target = is-html-target()
 #let is-pdf-target = is-pdf-target()
-#let is-web-target = is-web-target() or sys-is-html-target
 #let is-md-target = target == "md"
 #let sys-is-html-target = ("target" in dictionary(std))
+#let is-web-target = is-web-target() or sys-is-html-target
 
-#let default-kind = "post"
-// #let default-kind = "monthly"
+// #let default-kind = "post"
+#let default-kind = "monthly"
 
 #let build-kind = sys.inputs.at("build-kind", default: default-kind)
 
@@ -33,13 +35,28 @@
   10.5pt
 }
 // ,
-#let heading-sizes = (22pt, 18pt, 14pt, 12pt, main-size)
+#let heading-sizes = (22pt, 18pt, 14pt, 12pt, main-size) + (main-size,) * 10
 #let list-indent = 0.5em
 
 /// Creates an embedded block typst frame.
 #let div-frame(content, attrs: (:), tag: "div") = html.elem(tag, html.frame(content), attrs: attrs)
 #let span-frame = div-frame.with(tag: "span")
 #let p-frame = div-frame.with(tag: "p")
+
+#let auto-div-frame(body) = if is-web-target {
+  div-frame(body)
+} else {
+  body
+}
+
+#let auto-span-frame(body) = if is-web-target {
+  span-frame(body)
+} else {
+  body
+}
+
+#let auto-div-pseudocode-list(body) = auto-div-frame(pseudocode-list(body))
+
 
 // defaults
 #let (
@@ -52,7 +69,8 @@
 ) = default-theme
 
 #let markup-rules(body) = {
-  set text(font: pdf-fonts) if build-kind == "monthly"
+  set text(lang: "zh")
+  set text(font: pdf-fonts) if not sys-is-html-target
 
   set text(main-size) if sys-is-html-target
   set text(fill: rgb("dfdfd6")) if is-dark-theme and sys-is-html-target
@@ -135,7 +153,7 @@
   show raw: set text(font: code-font)
   show raw.where(block: true): it => context if shiroa-sys-target() == "paged" {
     set raw(theme: theme-style.code-theme) if theme-style.code-theme.len() > 0
-    rect(
+    block(
       width: 100%,
       inset: (x: 4pt, y: 5pt),
       radius: 4pt,
@@ -166,6 +184,39 @@
   body
 }
 
+#let my-rules(body) = {
+  show quote: it => {
+    if is-web-target {
+      html.elem(
+        if it.block {
+          "blockquote"
+        } else {
+          "q"
+        },
+        it.body,
+      )
+    } else {
+      it
+    }
+  }
+  set quote(block: true)
+  show outline: it => if build-kind == "monthly" {
+    show outline.entry: entry => {
+      if "label" in entry.element.fields().keys() and entry.element.label == label("post-heading") {
+        entry.indented(
+          h(-1.5em),
+          strong(entry.body() + h(1fr) + entry.page()),
+        )
+      } else {
+        set outline(indent: 2em)
+        entry
+      }
+    }
+    it
+  }
+  body
+}
+
 /// sub-chapters is only used in monthly (archive) build.
 #let shared-template(
   title: "Untitled",
@@ -192,13 +243,14 @@
     show: equation-rules
     // code block setting
     show: code-block-rules
+    // my
+    show: my-rules
 
     show: it => if sys-is-html-target {
       show footnote: it => context {
         let num = counter(footnote).get().at(0)
         link(label("footnote-" + str(num)), super(str(num)))
       }
-
       it
     } else {
       it
@@ -235,7 +287,7 @@
     align(
       center,
       {
-        text(12pt, date)
+        text(12pt)[Generated on #date]
         linebreak()
         strong(text(26pt, title))
         linebreak()
@@ -256,7 +308,7 @@
       {
         text(12pt, date)
         linebreak()
-        heading(numbering: none, title)
+        [#heading(numbering: none, title) <post-heading>]
         counter(heading).step()
         linebreak()
         text(16pt, desc)
