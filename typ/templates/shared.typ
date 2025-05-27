@@ -270,7 +270,7 @@
   if kind == "monthly" or is-same-kind [
     #metadata((
       title: plain-text(title),
-      author: "Myriad-Dreamin",
+      author: "ParaN3xus",
       description: plain-text(desc),
       date: date,
       tags: tags,
