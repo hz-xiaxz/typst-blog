@@ -1,14 +1,15 @@
 ---
-import Layout from "$layouts/BlogPost.astro";
+import BlogPostLayout from "$layouts/BlogPostLayout.astro";
+import Layout from "$layouts/BlogPostLayout.astro";
 // @ts-ignore
 import AboutContent from "../../content/other/about.typ?html&body";
 ---
 
-<Layout
-  id={false}
+<BlogPostLayout
+  id={"about"}
   title="About Me"
   description="Things about Myriad-Dreamin"
   date={new Date("April 25 2025")}
 >
   <AboutContent />
-</Layout>
+</BlogPostLayout>

@@ -25,17 +25,17 @@
   }
   html.elem(
     tag,
-    attrs: ("class": "code-image themed"),
+    attrs: ("class": "not-prose code-image themed"),
     {
       html.elem(
         theme-tag,
         render(dark-theme),
-        attrs: ("class": "dark"),
+        attrs: ("class": "theme-dark"),
       )
       html.elem(
         theme-tag,
         render(light-theme),
-        attrs: ("class": "light"),
+        attrs: ("class": "theme-light"),
       )
     },
   )

@@ -52,7 +52,7 @@
       tag: "p",
       theme => {
         set text(fill: theme.main-color)
-        p-frame(attrs: ("class": "block-equation"), it)
+        p-frame(attrs: (class: "block-equation"), it)
       },
     )
   } else {
@@ -146,7 +146,7 @@
   show: it => if is-same-kind {
     // set basic document metadata
     set document(
-      author: ("Myriad-Dreamin",),
+      author: ("ParaN3xus",),
       title: title,
     )
 

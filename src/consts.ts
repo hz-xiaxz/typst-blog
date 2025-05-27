@@ -2,10 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 import * as config from "../config.json";
-import STATS from "../content/snapshot/article-stats.json";
-import COMMENTS from "../content/snapshot/article-comments.json";
 
-type Comment = (typeof COMMENTS)[number];
 
 /**
  * Whether to enable backend, required by click and comment feature.
@@ -64,23 +61,7 @@ export const kUrlBase = config.URL_BASE.replace(/\/$/, "");
 /**
  * The click info obtained from the backend.
  */
-export const kArticleStats = STATS;
 
-/**
- * The comment info obtained from the backend.
- */
-export const kCommentInfo = (() => {
-  const kCommentInfo = new Map<string, Comment[]>();
-  for (const comment of COMMENTS) {
-    const { articleId } = comment;
-    if (!kCommentInfo.has(articleId)) {
-      kCommentInfo.set(articleId, []);
-    }
-    kCommentInfo.get(articleId)?.push(comment);
-  }
-  return kCommentInfo;
-})();
-export const kCommentList = COMMENTS;
 /**
  * The friend link info.
  */

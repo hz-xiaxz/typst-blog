@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostsList from "../../components/PostsList.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+
+const allTags = [
+  ...new Set(allPosts.flatMap((post) => post.data.tags || [])),
+].sort();
+
+const postsByTag = allTags.reduce(
+  (acc, tagName) => {
+    acc[tagName] = allPosts.filter(
+      (post) => post.data.tags && post.data.tags.includes(tagName)
+    );
+    return acc;
+  },
+  {} as Record<string, typeof allPosts>
+);
+---
+
+<BaseLayout>
+  <div class="w-full mx-auto py-2 space-y-6">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h1 class="card-title text-3xl mb-4">所有标签</h1>
+        <div class="text-sm text-base-content/70 mb-6">
+          共 {allTags.length} 个标签，{allPosts.length} 篇文章
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {
+            allTags.map((tagName) => (
+              <a
+                href={`/tags/${tagName}`}
+                class="badge badge-outline hover:badge-primary transition-colors"
+              >
+                {tagName}
+                <span class="ml-1 text-xs opacity-60">
+                  ({postsByTag[tagName].length})
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    {
+      allTags.map((tagName) => (
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body space-y-4">
+            <div class="flex justify-between items-center">
+              <h2 class="card-title text-2xl">
+                <span class="badge badge-primary">{tagName}</span>
+              </h2>
+              <div class="text-sm text-base-content/70">
+                {postsByTag[tagName].length} 篇文章
+              </div>
+            </div>
+
+            <PostsList posts={postsByTag[tagName]} size={5} />
+
+            {postsByTag[tagName].length > 5 && (
+              <div class="text-center">
+                <a href={`/tags/${tagName}`} class="btn btn-outline btn-sm">
+                  查看更多 {tagName} 文章
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>

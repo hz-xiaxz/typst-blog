@@ -1,0 +1,59 @@
+---
+import TagsPage from "./index.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostsList from "../../components/PostsList.astro";
+
+interface Props {
+  tag: string;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allPosts = await getCollection("blog");
+
+  const allTags = [
+    ...new Set(allPosts.flatMap((post) => post.data.tags || [])),
+  ];
+
+  return allTags.map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+};
+
+const { tag }: { tag: string } = Astro.props as Props;
+
+const allPosts = await getCollection("blog");
+
+const filteredPostsByTag = allPosts.filter(
+  (post) => post.data.tags && post.data.tags.includes(tag)
+);
+---
+
+<BaseLayout>
+  <div class="w-full mx-auto py-2 space-y-6">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body space-y-4">
+        <div class="flex justify-between items-center">
+          <h2 class="card-title text-2xl">
+            <span class="badge badge-primary">{tag}</span>
+          </h2>
+          <div class="text-sm text-base-content/70">
+            共 {filteredPostsByTag.length || 0} 篇文章
+          </div>
+        </div>
+
+        {
+          filteredPostsByTag && filteredPostsByTag.length > 0 ? (
+            <PostsList posts={filteredPostsByTag} />
+          ) : (
+            <div class="text-center py-8 text-base-content/60">
+              该标签下暂无文章
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -3,22 +3,18 @@ import { kUrlBase } from "$consts";
 
 interface Props {
   tags: string[];
+  classes: string;
 }
 
-const { tags } = Astro.props;
-const postByTag = (tag: string) => {
-  const params = new URLSearchParams();
-  params.set("search", tag);
-  return `${kUrlBase}/article?${params}`;
-};
+const { tags, classes } = Astro.props;
 ---
 
-<ul class="tags" aria-label="Tags">
+<div class="flex gap-1">
   {
     tags.map((tag) => (
-      <li>
-        <a href={postByTag(tag)}>#{tag}</a>
-      </li>
+      <a href={`/tags/${tag}/`} class={classes}>
+        {tag}
+      </a>
     ))
   }
-</ul>
+</div>
