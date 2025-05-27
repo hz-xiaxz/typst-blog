@@ -7,24 +7,21 @@ import {
   kSiteIndexTitle,
   kSiteDescription,
   kUrlBase,
-  kBaiduVeriCode,
 } from "$consts";
 ---
 
 <header
-  class="bg-base-100 navbar sticky top-0 z-30 bg-opacity-80 backdrop-blur"
+  class="bg-base-100 sticky top-0 z-30 bg-opacity-80 backdrop-blur shadow-xl"
 >
-  <div class="max-w-5xl mx-auto navbar">
+  <div class="navbar mx-auto w-full max-w-5xl px-16">
     <div class="flex-1">
       <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
     </div>
-    <div class="flex-none">
-      <ul class="space-x-2">
-        <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
-        <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
-        <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
-      </ul>
-      <ThemeIcon />
-    </div>
+    <ul class="space-x-2">
+      <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
+      <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
+      <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
+    </ul>
+    <ThemeIcon />
   </div>
 </header>
