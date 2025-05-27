@@ -2,7 +2,10 @@ import { NodeCompiler } from "@myriaddreamin/typst-ts-node-compiler";
 import commentTemplate from "../../typ/templates/comment.typ?raw";
 import { resolve } from "path";
 
-const projectRoot = resolve(import.meta.dirname, "../../");
+const projectRoot = resolve(
+  import.meta.dirname,
+  import.meta.env.DEV ? "../../" : "../../../"
+);
 
 const compiler = NodeCompiler.create({
   workspace: resolve(projectRoot, "typ/templates"),
