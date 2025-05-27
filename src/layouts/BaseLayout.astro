@@ -1,21 +1,88 @@
 ---
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseHead /> component.
+import "$styles/global.css";
+/* https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap */
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/inter/wght-italic.css";
+import "@fontsource-variable/inter/opsz.css";
+import "@fontsource-variable/inter/opsz-italic.css";
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/global.css";
-import { kUrlBase } from "$consts";
+import { kSiteTitle, kUrlBase } from "$consts";
 const { pageTitle, pageDescription } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const image = `${kUrlBase}/profile-banner.png`;
 ---
 
 <html lang="zh-cn" class="h-full">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={`${kUrlBase}/favicon.svg`} />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <script is:inline defer src="https://events.vercount.one/js"></script>
-  </head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href={`${kUrlBase}/favicon.svg`} />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+
+  <link rel="sitemap" href={`${kUrlBase}/sitemap-index.xml`} />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={kSiteTitle}
+    href={new URL("rss.xml", Astro.site)}
+  />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Primary Meta Tags -->
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:image" content={new URL(image, Astro.url)} />
+  <meta property="og:image:alt" content=`${kSiteTitle} Banner` />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={pageTitle} />
+  <meta property="twitter:description" content={pageDescription} />
+  <meta property="twitter:image" content={new URL(image, Astro.url)} />
+  <meta property="twitter:image:alt" content=`${kSiteTitle} Banner` />
+
+  <!-- Counter -->
+  <script is:inline defer src="https://events.vercount.one/js"></script>
+
+  <!-- Theme Support -->
+  <script is:inline>
+    const checkCss = () => {
+      const prefersDarkScheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
+      if (prefersDarkScheme.matches) {
+        document.documentElement.classList.add("dark");
+      }
+    };
+
+    // Check for saved theme preference or default to dark theme
+    if (typeof localStorage !== "undefined") {
+      const userSetTheme = localStorage.getItem("theme");
+      if (userSetTheme) {
+        if (userSetTheme === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      } else {
+        checkCss();
+      }
+    } else {
+      checkCss();
+    }
+  </script>
+
   <body class="bg-base-300 min-h-screen">
     <div class="min-h-screen flex flex-col">
       <Header />
