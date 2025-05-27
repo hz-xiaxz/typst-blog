@@ -1,4 +1,0 @@
-[submodule "content"]
-	path = content
-	url = https://github.com/Myriad-Dreamin/Myriad-Dreamin
-	branch = blog

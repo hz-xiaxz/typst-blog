@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { typst } from "astro-typst";
 import { URL_BASE } from "./config.json";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
+    icon(),
     typst({
       // Always builds HTML files
       mode: {
