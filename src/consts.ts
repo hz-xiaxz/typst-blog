@@ -38,6 +38,8 @@ export const kSiteDescription = config.SITE_DESCRIPTION;
 export const kUrlBase = config.URL_BASE.replace(/\/$/, "");
 
 
+export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
+
 /**
  * The friend link info.
  */

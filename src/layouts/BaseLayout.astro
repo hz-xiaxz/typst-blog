@@ -10,7 +10,7 @@ import "@fontsource-variable/inter/opsz-italic.css";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { kSiteTitle, kUrlBase } from "$consts";
+import { kSiteTitle, kUrlBase, kGoogleSiteVerification } from "$consts";
 const { pageTitle, pageDescription } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -30,7 +30,7 @@ const image = `${kUrlBase}/profile-banner.png`;
     title={kSiteTitle}
     href={new URL("rss.xml", Astro.site)}
   />
-
+  <meta name="google-site-verification" content={kGoogleSiteVerification} />
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />
 
