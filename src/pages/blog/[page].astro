@@ -18,13 +18,13 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const postIndexes = Array.from({ length: allPosts.length }, (_, i) => i);
 
   return paginate(postIndexes, {
-    pageSize: 10,
+    pageSize: 16,
     params: { page: undefined },
     props: {},
   });
 };
 
-const offset = (page.currentPage - 1) * 10;
+const offset = (page.currentPage - 1) * page.size;
 ---
 
 <BaseLayout
@@ -36,14 +36,14 @@ const offset = (page.currentPage - 1) * 10;
       <div class="card-body space-y-4">
         <div class="flex justify-between items-center">
           <h2 class="card-title text-2xl">全部文章</h2>
-          <div class="text-sm text-base-content/70">
+          <div class="text-sm text-base-content/70 hidden lg:flex">
             第 {page.currentPage} 页, 共 {page.lastPage} 页 | 显示 {
               offset + 1
-            }-{Math.min(offset + 10, page.total)} 篇, 共 {page.total} 篇
+            }-{Math.min(offset + page.size, page.total)} 篇, 共 {page.total} 篇
           </div>
         </div>
 
-        <PostsList size={10} offset={offset} />
+        <PostsList size={page.size} offset={offset} />
 
         <Pagination page={page} />
       </div>

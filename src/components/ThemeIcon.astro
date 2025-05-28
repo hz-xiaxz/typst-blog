@@ -2,15 +2,15 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<label class="swap swap-rotate mx-4">
+<label class="swap swap-rotate btn btn-ghost btn-circle">
   <input
     type="checkbox"
     class="theme-controller"
     value="light"
     id="theme-toggle"
   />
-  <Icon name="heroicons:sun" class="swap-on w-8 h-8 text-yellow-500" />
-  <Icon name="heroicons:moon" class="swap-off w-8 h-8 text-gray-500" />
+  <Icon name="ri:sun-line" size="24" class="swap-on text-yellow-500" />
+  <Icon name="ri:moon-line" size="24" class="swap-off text-gray-500" />
 </label>
 
 <script>

@@ -24,7 +24,7 @@ const { id, title, description, date, updatedDate, tags } = Astro.props;
       <div class="prose prose-lg max-w-none">
         <section class="mb-8" aria-label="Title">
           <div
-            class="flex flex-wrap items-center gap-2 text-sm opacity-70 mb-4"
+            class="flex flex-col lg:flex-row sm:flex-wrap gap-2 text-sm opacity-70 mb-4"
           >
             {
               [
@@ -39,12 +39,6 @@ const { id, title, description, date, updatedDate, tags } = Astro.props;
                     )}
                   </span>
                 ),
-                tags && tags.length > 0 && (
-                  <TagList
-                    tags={tags}
-                    classes="badge badge-outline hover:text-blue-500 not-prose"
-                  />
-                ),
                 id && (
                   <span>
                     <span id="vercount_value_page_pv" class="tabular-nums">
@@ -53,13 +47,19 @@ const { id, title, description, date, updatedDate, tags } = Astro.props;
                     views
                   </span>
                 ),
+                tags && tags.length > 0 && (
+                  <TagList
+                    tags={tags}
+                    classes="badge badge-outline hover:text-blue-500 not-prose"
+                  />
+                ),
               ]
                 .filter(Boolean)
                 .map((element, index, array) => (
                   <>
                     {element}
                     {index < array.length - 1 && (
-                      <span class="divider divider-horizontal mx-1" />
+                      <span class="divider divider-horizontal mx-1 hidden lg:flex " />
                     )}
                   </>
                 ))
@@ -75,7 +75,7 @@ const { id, title, description, date, updatedDate, tags } = Astro.props;
 
     {
       id && kEnableComment && (
-        <div class="w-full mx-auto mt-auto pt-8">
+        <div class="w-full mx-auto mt-auto ">
           <Comment />
         </div>
       )
