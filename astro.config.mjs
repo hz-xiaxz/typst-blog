@@ -9,11 +9,7 @@ import copyAssetsIntegration from './integrations/copy-assets.js';
 // https://astro.build/config
 export default defineConfig({
   // Deploys to GitHub Pages
-  // site: "https://myriad-dreamin.github.io",
-  // base: "/blog/",
-
-  // Deploys to My Blog Site
-  site: "https://www.myriad-dreamin.com",
+  site: "https://paran3xus.github.io",
   base: URL_BASE,
 
   integrations: [
