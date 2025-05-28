@@ -1,8 +1,7 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import * as config from "../config.json";
-
+import * as config from "astro:env/client";
 
 /**
  * Whether to enable comment posting and viewing.

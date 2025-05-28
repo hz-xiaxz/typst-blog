@@ -1,16 +1,36 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { typst } from "astro-typst";
-import { URL_BASE } from "./config.json";
+import { loadEnv } from "vite";
 import icon from "astro-icon";
 import copyAssetsIntegration from './integrations/copy-assets.js';
 
-// https://astro.build/config
+// Please check `defineConfig/env` in astro.config.mjs for schema
+const e = loadEnv(process.env.NODE_ENV || "", process.cwd(), "");
+const { SITE, URL_BASE } = e;
+
+const EnvStr = (optional = false) =>
+  envField.string({ context: "client", access: "public", optional });
+
 export default defineConfig({
-  // Deploys to GitHub Pages
-  site: "https://paran3xus.github.io",
+  site: SITE,
   base: URL_BASE,
+
+  env: {
+    schema: {
+      SITE_OWNER: EnvStr(),
+      SITE_TITLE: EnvStr(),
+      SITE_INDEX_TITLE: EnvStr(),
+      SITE_DESCRIPTION: EnvStr(),
+
+      SITE: EnvStr(),
+      URL_BASE: EnvStr(true),
+
+      GOOGLE_SITE_VERIFICATION: EnvStr(),
+      BING_SITE_VERIFICATION: EnvStr(),
+    },
+  },
 
   integrations: [
     sitemap(),
