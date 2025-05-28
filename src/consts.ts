@@ -34,7 +34,7 @@ export const kSiteDescription = config.SITE_DESCRIPTION;
  * - For a GitHub page `https://username.github.io/repo`, the URL base is `/repo/`.
  * - For a netlify page, the URL base is `/`.
  */
-export const kUrlBase = config.URL_BASE.replace(/\/$/, "");
+export const kUrlBase = (config.URL_BASE || "").replace(/\/$/, "");
 
 export const kBingSIteVerification = config.BING_SITE_VERIFICATION;
 export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
