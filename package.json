@@ -17,20 +17,19 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
     "@fontsource-variable/inter": "^5.2.5",
+    "@iconify-json/heroicons": "^1.2.2",
     "@iconify-json/ri": "^1.2.5",
     "@myriaddreamin/typst-ts-node-compiler": "^0.6.0-rc1",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.21",
     "astro": "^5.7.13",
-    "astro-typst": "0.9.0-rc1",
-    "astro-heroicons": "^2.1.5-1",
     "astro-icon": "^1.1.5",
-    "lucide-astro": "^0.511.0",
-    "typescript": "^5.8.3",
+    "astro-typst": "0.9.0-rc1",
     "autoprefixer": "^10.4.21",
     "daisyui": "4",
+    "postcss": "^8.5.3",
     "tailwindcss": "3",
-    "postcss": "^8.5.3"
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "vite": "^6.3.5"

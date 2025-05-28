@@ -1,6 +1,5 @@
 ---
-import Sun from "astro-heroicons/outline/Sun.astro";
-import Moon from "astro-heroicons/outline/Moon.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <label class="swap swap-rotate mx-4">
@@ -10,8 +9,8 @@ import Moon from "astro-heroicons/outline/Moon.astro";
     value="light"
     id="theme-toggle"
   />
-  <Sun class="swap-on w-8 h-8 text-yellow-500" />
-  <Moon class="swap-off w-8 h-8 text-gray-500" />
+  <Icon name="heroicons:sun" class="swap-on w-8 h-8 text-yellow-500" />
+  <Icon name="heroicons:moon" class="swap-off w-8 h-8 text-gray-500" />
 </label>
 
 <script>
