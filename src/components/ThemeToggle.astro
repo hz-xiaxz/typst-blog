@@ -11,6 +11,10 @@ import { Icon } from "astro-icon/components";
   />
   <Icon name="ri:sun-line" size="24" class="swap-on text-yellow-500" />
   <Icon name="ri:moon-line" size="24" class="swap-off text-gray-500" />
+  <script>
+    import { themeChange } from "theme-change";
+    themeChange();
+  </script>
 </label>
 
 <script>
@@ -26,6 +30,7 @@ import { Icon } from "astro-icon/components";
 
     const savedTheme: string = localStorage.getItem("theme") || "dark";
 
+    document.documentElement.setAttribute("data-theme", savedTheme);
     themeToggle.checked = savedTheme === "light";
 
     themeToggle.addEventListener("change", (): void => {
