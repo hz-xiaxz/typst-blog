@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<label class="swap swap-rotate btn btn-ghost btn-circle">
+  <input
+    type="checkbox"
+    data-toggle-theme="dark,light"
+    data-act-class="ACTIVECLASS"
+    id="theme-toggle"
+  />
+  <Icon name="ri:sun-line" size="24" class="swap-on text-yellow-500" />
+  <Icon name="ri:moon-line" size="24" class="swap-off text-gray-500" />
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (): void => {
+    const themeToggle = document.getElementById(
+      "theme-toggle"
+    ) as HTMLInputElement;
+
+    if (!themeToggle) {
+      console.error("Theme toggle element not found");
+      return;
+    }
+
+    const savedTheme: string = localStorage.getItem("theme") || "dark";
+
+    themeToggle.checked = savedTheme === "light";
+
+    themeToggle.addEventListener("change", (): void => {
+      const newTheme: string = themeToggle.checked ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+    });
+  });
+</script>

@@ -5,7 +5,6 @@ import typography from "@tailwindcss/typography"
 
 export default {
   content: ["./src/**/*.{html,astro,vue,js,ts}"],
-  darkMode: "class",
   theme: {
     extend: {
     },

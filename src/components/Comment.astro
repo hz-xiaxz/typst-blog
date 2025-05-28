@@ -15,7 +15,7 @@ const giscusConfig = {
   <div id="giscus-container"></div>
 </section>
 
-<script define:vars={{ giscusConfig }}>
+<script is:inline define:vars={{ giscusConfig }}>
   const script = document.createElement("script");
   script.src = "https://giscus.app/client.js";
   script.setAttribute("data-repo", giscusConfig.repo);
@@ -35,7 +35,6 @@ const giscusConfig = {
     localStorage.getItem("theme") || giscusConfig.defaultTheme
   );
   script.setAttribute("data-lang", "zh-CN");
-  script.setAttribute("data-loading", "lazy");
   script.setAttribute("crossorigin", "anonymous");
   script.async = true;
 
@@ -44,9 +43,10 @@ const giscusConfig = {
 
 <script is:inline>
   function updateGiscusTheme() {
-    const theme = document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
+    const theme =
+      document.documentElement.getAttribute("data-theme") === "dark"
+        ? "dark"
+        : "light";
     const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe) return;
     iframe.contentWindow.postMessage(
@@ -58,7 +58,7 @@ const giscusConfig = {
   const observer = new MutationObserver(updateGiscusTheme);
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["class"],
+    attributeFilter: ["data-theme"],
   });
 
   window.onload = () => {

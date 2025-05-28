@@ -66,32 +66,6 @@ const image = `${kUrlBase}/profile-banner.png`;
   <!-- Counter -->
   <script is:inline defer src="https://events.vercount.one/js"></script>
 
-  <!-- Theme Support -->
-  <script is:inline>
-    const checkCss = () => {
-      const prefersDarkScheme = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-      if (prefersDarkScheme.matches) {
-        document.documentElement.classList.add("dark");
-      }
-    };
-
-    // Check for saved theme preference or default to dark theme
-    if (typeof localStorage !== "undefined") {
-      const userSetTheme = localStorage.getItem("theme");
-      if (userSetTheme) {
-        if (userSetTheme === "dark") {
-          document.documentElement.classList.add("dark");
-        }
-      } else {
-        checkCss();
-      }
-    } else {
-      checkCss();
-    }
-  </script>
-
   <body class="bg-base-300 min-h-screen">
     <div class="min-h-screen flex flex-col">
       <Header />

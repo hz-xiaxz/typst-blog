@@ -29,6 +29,7 @@
     "daisyui": "4",
     "postcss": "^8.5.3",
     "tailwindcss": "3",
+    "theme-change": "^2.5.0",
     "typescript": "^5.8.3"
   },
   "devDependencies": {

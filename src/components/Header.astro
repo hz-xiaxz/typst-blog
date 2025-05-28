@@ -1,5 +1,5 @@
 ---
-import ThemeIcon from "./ThemeIcon.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const classSmallNavItem = "btn btn-ghost w-16";
 import { kSiteTitle, kUrlBase } from "$consts";
@@ -9,19 +9,13 @@ import { Icon } from "astro-icon/components";
 <header
   class="bg-base-100 sticky top-0 z-[1] bg-opacity-80 backdrop-blur shadow-lg"
 >
-  <div class="hidden lg:flex navbar mx-auto w-full max-w-5xl px-16">
-    <div class="flex-1">
-      <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
-    </div>
-    <ul class="space-x-2">
-      <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
-      <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
-      <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
-      <ThemeIcon />
-    </ul>
-  </div>
-  <div class="lg:hidden navbar">
-    <div class="navbar-start">
+  <script>
+    import { themeChange } from "theme-change";
+    themeChange();
+  </script>
+
+  <div class="navbar mx-auto w-full max-w-5xl lg:px-16">
+    <div class="navbar-start lg:hidden">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
           <Icon name="ri:menu-line" size="24" />
@@ -45,11 +39,23 @@ import { Icon } from "astro-icon/components";
         </ul>
       </div>
     </div>
-    <div class="navbar-center">
+
+    <div class="navbar-start hidden lg:flex">
       <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
     </div>
+
+    <div class="navbar-center lg:hidden">
+      <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
+    </div>
+
     <div class="navbar-end">
-      <ThemeIcon />
+      <div class="hidden lg:flex lg:items-center lg:space-x-4">
+        <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
+        <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
+        <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
+      </div>
+
+      <ThemeToggle />
     </div>
   </div>
 </header>

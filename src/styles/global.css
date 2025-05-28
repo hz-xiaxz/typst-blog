@@ -5,10 +5,10 @@
 .theme-dark {
   display: none !important;
 }
-html.dark .theme-dark {
+html[data-theme="dark"] .theme-dark {
   display: revert !important;
 }
-html.dark .theme-light {
+html[data-theme="dark"] .theme-light {
   display: none !important;
 }
 
