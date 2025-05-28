@@ -37,7 +37,7 @@ export const kSiteDescription = config.SITE_DESCRIPTION;
  */
 export const kUrlBase = config.URL_BASE.replace(/\/$/, "");
 
-
+export const kBingSIteVerification = config.BING_SITE_VERIFICATION;
 export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
 
 /**
