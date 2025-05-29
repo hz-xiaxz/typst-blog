@@ -35,7 +35,7 @@
   10.5pt
 }
 // ,
-#let heading-sizes = (22pt, 18pt, 14pt, 12pt, main-size) + (main-size,) * 10
+#let heading-sizes = (22pt, 18pt, 14pt, 12pt, main-size)
 #let list-indent = 0.5em
 
 /// Creates an embedded block typst frame.
@@ -63,7 +63,7 @@
   show link: set text(fill: dash-color)
 
   show heading: it => {
-    set text(size: heading-sizes.at(it.level))
+    set text(size: heading-sizes.at(it.level, default: main-size))
 
     block(
       spacing: 0.7em * 1.5 * 1.2,
@@ -234,6 +234,7 @@
   desc: [This is a blog post.],
   date: "2024-08-15",
   tags: (),
+  license: "",
   kind: "post",
   show-outline: true,
   archive-indices: (),
@@ -326,6 +327,25 @@
         text(16pt, desc)
       },
     )
+    {
+      if license in license-info.keys() {
+        let url = license-info.at(license).url
+        let text = license-info.at(license).text
+        let icons = license-info.at(license).icons
+        grid(
+          columns: icons.len(),
+          column-gutter: 0.2em,
+          ..icons.map(x => {
+            image("assets/license-icons/" + x + ".svg", width: 1em)
+          })
+        )
+        v(-0.7em)
+        [
+          #title © #date.slice(0, 4) by #link("https://paran3xus.github.io/")[ParaN3xus] is licensed under #link(url, text).
+        ]
+        v(-0.5em)
+      }
+    }
     v(16pt)
   }
 
@@ -338,6 +358,7 @@
       description: plain-text(desc),
       date: date,
       tags: tags,
+      license: license,
       ..if kind == "monthly" {
         (indices: archive-indices)
       },

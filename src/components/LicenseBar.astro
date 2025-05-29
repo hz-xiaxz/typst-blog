@@ -1,0 +1,91 @@
+---
+import { kSiteOwner } from "$consts";
+
+const siteUrl = Astro.url.origin;
+
+const { id, title, date, license } = Astro.props;
+type SvgName = "cc" | "by" | "sa" | "nd" | "nc" | "zero";
+
+type LicenseKey =
+  | "cc-0"
+  | "cc-by"
+  | "cc-by-sa"
+  | "cc-by-nd"
+  | "cc-by-nc"
+  | "cc-by-nc-sa"
+  | "cc-by-nc-nd";
+
+interface LicenseInfo {
+  url: string;
+  text: string;
+  icons: string;
+}
+
+const svgs: SvgName[] = ["cc", "by", "sa", "nd", "nc", "zero"];
+
+const svgMap: Map<SvgName, string> = new Map(
+  svgs.map((name: SvgName): [SvgName, string] => [
+    name,
+    `<img src="https://mirrors.creativecommons.org/presskit/icons/${name}.svg"/>`,
+  ])
+);
+
+const [ccSVG, bySVG, saSVG, ndSVG, ncSVG, zeroSVG]: (string | undefined)[] =
+  svgs.map((name: SvgName): string | undefined => svgMap.get(name));
+
+const licenseMap: Record<LicenseKey, LicenseInfo> = {
+  "cc-0": {
+    url: "https://creativecommons.org/publicdomain/zero/1.0/",
+    text: "CC0 1.0",
+    icons: (ccSVG || "") + (zeroSVG || ""),
+  },
+  "cc-by": {
+    url: "https://creativecommons.org/licenses/by/4.0/",
+    text: "CC BY 4.0",
+    icons: (ccSVG || "") + (bySVG || ""),
+  },
+  "cc-by-sa": {
+    url: "https://creativecommons.org/licenses/by-sa/4.0/",
+    text: "CC BY-SA 4.0",
+    icons: (ccSVG || "") + (bySVG || "") + (saSVG || ""),
+  },
+  "cc-by-nd": {
+    url: "https://creativecommons.org/licenses/by-nd/4.0/",
+    text: "CC BY-ND 4.0",
+    icons: (ccSVG || "") + (bySVG || "") + (ndSVG || ""),
+  },
+  "cc-by-nc": {
+    url: "https://creativecommons.org/licenses/by-nc/4.0/",
+    text: "CC BY-NC 4.0",
+    icons: (ccSVG || "") + (bySVG || "") + (ncSVG || ""),
+  },
+  "cc-by-nc-sa": {
+    url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    text: "CC BY-NC-SA 4.0",
+    icons: (ccSVG || "") + (bySVG || "") + (ncSVG || "") + (saSVG || ""),
+  },
+  "cc-by-nc-nd": {
+    url: "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    text: "CC BY-NC-ND 4.0",
+    icons: (ccSVG || "") + (bySVG || "") + (ncSVG || "") + (ndSVG || ""),
+  },
+};
+const currentLicense: LicenseInfo | undefined =
+  licenseMap[license as LicenseKey];
+---
+
+{
+  currentLicense && (
+    <div>
+      <div class="flex items-center gap-1 w-5 h-5">
+        <Fragment set:html={currentLicense.icons} />
+      </div>
+      <a href={siteUrl + "/articles/" + id}>{title}</a>
+      <span> © {date.getFullYear()} by </span>
+      <a href={siteUrl}>{kSiteOwner}</a>
+      <span> is licensed under </span>
+      <a href={currentLicense.url}>{currentLicense.text}</a>
+      <span>.</span>
+    </div>
+  )
+}
