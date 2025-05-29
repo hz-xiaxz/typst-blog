@@ -1,21 +1,12 @@
 ---
-import { kEnableReaction } from "$consts";
-
-const giscusConfig = {
-  repo: "paran3xus/paran3xus.github.io",
-  repoId: "R_kgDOOxdsrA",
-  category: "General",
-  categoryId: "DIC_kwDOOxdsrM4CqpWy",
-  enableReaction: kEnableReaction,
-  defaultTheme: "dark",
-};
+import { kGiscusConfig } from "$consts";
 ---
 
 <section class="mx-auto mt-12">
   <div id="giscus-container"></div>
 </section>
 
-<script is:inline define:vars={{ giscusConfig }}>
+<script is:inline define:vars={{ giscusConfig: kGiscusConfig }}>
   const script = document.createElement("script");
   script.src = "https://giscus.app/client.js";
   script.setAttribute("data-repo", giscusConfig.repo);

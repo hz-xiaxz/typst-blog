@@ -40,6 +40,17 @@ export const kBingSIteVerification = config.BING_SITE_VERIFICATION;
 export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
 
 /**
+ * giscus config.
+ */
+export const kGiscusConfig = {
+  repo: "paran3xus/paran3xus.github.io",
+  repoId: "R_kgDOOxdsrA",
+  category: "General",
+  categoryId: "DIC_kwDOOxdsrM4CqpWy",
+  enableReaction: kEnableReaction,
+};
+
+/**
  * The friend link info.
  */
 export const kFriendLinks = [
