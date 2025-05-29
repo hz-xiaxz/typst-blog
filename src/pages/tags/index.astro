@@ -28,7 +28,7 @@ const postsByTag = allTags.reduce(
   pageTitle={`所有标签 | ${kSiteTitle}`}
   pageDescription=`${kSiteTitle} 的所有标签.`
 >
-  <div class="w-full mx-auto py-2 space-y-6">
+  <div class="py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
         <h1 class="card-title text-3xl mb-4">所有标签</h1>
@@ -40,7 +40,7 @@ const postsByTag = allTags.reduce(
             allTags.map((tagName) => (
               <a
                 href={`${kUrlBase}/tags/${tagName}`}
-                class="badge badge-outline hover:badge-primary transition-colors"
+                class="badge badge-outline"
               >
                 {tagName}
                 <span class="ml-1 text-xs opacity-60">
@@ -57,8 +57,8 @@ const postsByTag = allTags.reduce(
       allTags.map((tagName) => (
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body space-y-4">
-            <div class="flex justify-between items-center">
-              <h2 class="card-title text-2xl">
+            <div class="flex justify-between">
+              <h2 class="card-title text-2xl items-center">
                 <span class="badge badge-primary">{tagName}</span>
               </h2>
               <div class="text-sm text-base-content/70">

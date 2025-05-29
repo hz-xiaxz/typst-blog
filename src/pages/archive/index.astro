@@ -30,7 +30,7 @@ const postsByYear = allYears.reduce(
   pageTitle={`文章归档 | ${kSiteTitle}`}
   pageDescription={`${kSiteTitle} 中所有文章的归档信息`}
 >
-  <div class="w-full mx-auto py-2 space-y-6">
+  <div class="py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
         <h1 class="card-title text-3xl mb-4">文章归档</h1>
@@ -42,7 +42,7 @@ const postsByYear = allYears.reduce(
             allYears.map((year) => (
               <a
                 href={`${kUrlBase}/archive/${year}`}
-                class="badge badge-outline hover:text-primary transition-colors"
+                class="badge badge-outline"
               >
                 {year}
                 <span class="ml-1 text-xs opacity-60">
@@ -59,8 +59,8 @@ const postsByYear = allYears.reduce(
       allYears.map((year) => (
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body space-y-4">
-            <div class="flex justify-between items-center">
-              <h2 class="card-title text-2xl">
+            <div class="flex justify-between">
+              <h2 class="card-title text-2xl items-center">
                 <span class="badge badge-primary">{year}</span>
               </h2>
 

@@ -37,11 +37,11 @@ const filteredPostsByTag = allPosts.filter(
   pageTitle={`${tag} 标签 | ${kSiteTitle}`}
   pageDescription={`${kSiteTitle} 中所有关于 ${tag} 的文章.`}
 >
-  <div class="w-full mx-auto py-2 space-y-6">
+  <div class="py-2 space-y-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body space-y-4">
-        <div class="flex justify-between items-center">
-          <h2 class="card-title text-2xl">
+        <div class="flex justify-between">
+          <h2 class="card-title text-2xl items-center">
             <span class="badge badge-primary">{tag}</span>
           </h2>
           <div class="text-sm text-base-content/70">
