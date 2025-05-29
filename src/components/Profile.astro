@@ -1,15 +1,19 @@
 ---
-import { kSiteOwner, kSocialLinks } from "$consts";
+import { kSiteOwner, kSocialLinks, kUrlBase } from "$consts";
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="max-w-80 card card-compact bg-base-100 shadow-xl mx-auto">
+<div class="card card-compact bg-base-100 shadow-xl">
   <figure>
-    <img class="object-cover h-48" src="/profile-banner.png" alt="Avatar" />
+    <img
+      class="object-cover h-48"
+      src=`${kUrlBase}/profile-banner.png`
+      alt="Avatar"
+    />
   </figure>
-  <div class="card-body">
-    <p class="text-center text-lg font-bold">{kSiteOwner}</p>
-    <p class="text-center">希望少犯之前犯过的错.</p>
+  <div class="card-body text-center m-2 space-y-2">
+    <p class="text-lg font-bold">{kSiteOwner}</p>
+    <p class="">希望少犯之前犯过的错.</p>
     <div class="grid grid-cols-2 gap-3">
       {
         kSocialLinks.map((link) => (
@@ -18,7 +22,7 @@ import { Icon } from "astro-icon/components";
             target="_blank"
             class="hover:text-primary flex justify-center"
           >
-            <button class="btn btn-ghost w-32">
+            <button class="btn btn-ghost w-full btn-sm">
               <Icon name={link.icon} size="20px" />
               <p>{link.name}</p>
             </button>

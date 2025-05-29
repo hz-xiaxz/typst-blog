@@ -18,14 +18,14 @@ const tagCounts = tags
 ---
 
 <BaseLayout pageTitle={kSiteTitle} , pageDescription={kSiteDescription}>
-  <div class="max-w-6xl mx-auto py-2">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div class="hidden lg:block lg:col-span-1 space-y-8">
+  <div class="max-w-6xl py-2">
+    <div class="flex space-x-8">
+      <div class="hidden lg:block min-w-80 w-80 space-y-8">
         <Profile />
-        <div class="max-w-80 card card-compact bg-base-100 shadow-xl mx-auto">
-          <div class="card-body m-1">
+        <div class="card card-compact bg-base-100 shadow-xl">
+          <div class="card-body m-2 space-y-2">
             <div class="flex items-center justify-between">
-              <h3 class="card-title text-lg">Tags</h3>
+              <h3 class="card-title text-lg">标签</h3>
               <a href={`${kUrlBase}/tags/`} class="btn btn-ghost btn-sm"
                 >全部标签 <Icon name="ri:arrow-right-line" size="16" /></a
               >
@@ -35,10 +35,12 @@ const tagCounts = tags
                 tagCounts.map(({ name, count }) => (
                   <a
                     href={`${kUrlBase}/tags/${name}/`}
-                    class="badge badge-outline hover:text-blue-500"
+                    class="badge badge-outline"
                   >
                     {name}{" "}
-                    <span class="ml-1 text-xs opacity-60">({count})</span>
+                    <span class="ml-1 text-xs text-base-content/60">
+                      ({count})
+                    </span>
                   </a>
                 ))
               }
@@ -46,7 +48,7 @@ const tagCounts = tags
           </div>
         </div>
       </div>
-      <div class="lg:col-span-2">
+      <div class="flex-1 overflow-auto">
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body">
             <div class="flex items-center justify-between mb-6">
