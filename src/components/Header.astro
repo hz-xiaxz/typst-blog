@@ -1,36 +1,59 @@
 ---
+import { kSiteTitle, kUrlBase } from "$consts";
+import { Icon } from "astro-icon/components";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const classSmallNavItem = "btn btn-ghost w-16";
-import { kSiteTitle, kUrlBase } from "$consts";
-import { Icon } from "astro-icon/components";
+
+const navButtons = [
+  {
+    text: "归档",
+    href: "archive",
+  },
+  {
+    text: "标签",
+    href: "tags",
+  },
+  {
+    text: "友链",
+    href: "friends",
+  },
+  {
+    text: "关于",
+    href: "about",
+  },
+].map((x) => {
+  return {
+    text: x.text,
+    href: `${kUrlBase}/${x.href}/`,
+  };
+});
 ---
 
 <header
   class="bg-base-100 sticky top-0 z-[1] bg-opacity-80 backdrop-blur shadow-lg"
 >
-  <div class="navbar mx-auto w-full max-w-5xl lg:px-16">
+  <div class="navbar mx-auto max-w-5xl lg:px-16">
     <div class="navbar-start lg:hidden">
       <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <div tabindex="0" class="btn btn-ghost btn-circle">
           <Icon name="ri:menu-line" size="24" />
         </div>
         <ul
           tabindex="0"
-          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 p-2 space-y-2 shadow"
+          class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 space-y-2 shadow-lg"
         >
-          <li>
-            <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
-          </li>
-          <li>
-            <a class={classSmallNavItem} href={`${kUrlBase}/tags/`}>标签</a>
-          </li>
-          <li>
-            <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
-          </li>
-          <li>
-            <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
-          </li>
+          {
+            navButtons.map((x) => {
+              return (
+                <li>
+                  <a class={classSmallNavItem} href={x.href}>
+                    {x.text}
+                  </a>
+                </li>
+              );
+            })
+          }
         </ul>
       </div>
     </div>
@@ -43,11 +66,17 @@ import { Icon } from "astro-icon/components";
       <a class="btn btn-ghost text-xl" href={`${kUrlBase}/`}>{kSiteTitle}</a>
     </div>
 
-    <div class="navbar-end">
-      <div class="hidden lg:flex lg:items-center lg:space-x-4">
-        <a class={classSmallNavItem} href={`${kUrlBase}/archive/`}>归档</a>
-        <a class={classSmallNavItem} href={`${kUrlBase}/friends/`}>友链</a>
-        <a class={classSmallNavItem} href={`${kUrlBase}/about/`}>关于</a>
+    <div class="navbar-end space-x-2">
+      <div class="hidden lg:flex lg:space-x-2">
+        {
+          navButtons.map((x) => {
+            return (
+              <a class={classSmallNavItem} href={x.href}>
+                {x.text}
+              </a>
+            );
+          })
+        }
       </div>
 
       <ThemeToggle />
