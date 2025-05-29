@@ -3,10 +3,6 @@
 // all pages through the use of the <BaseHead /> component.
 import "$styles/global.css";
 /* https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap */
-import "@fontsource-variable/inter/wght.css";
-import "@fontsource-variable/inter/wght-italic.css";
-import "@fontsource-variable/inter/opsz.css";
-import "@fontsource-variable/inter/opsz-italic.css";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -22,7 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const image = `${kUrlBase}/profile-banner.png`;
 ---
 
-<html lang="zh-cn" class="h-full">
+<html lang="zh-cn">
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href={`${kUrlBase}/favicon.svg`} />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -66,7 +62,7 @@ const image = `${kUrlBase}/profile-banner.png`;
   <!-- Counter -->
   <script is:inline defer src="https://events.vercount.one/js"></script>
 
-  <body class="bg-base-300 min-h-screen">
+  <body class="bg-base-200">
     <div class="min-h-screen flex flex-col">
       <Header />
       <div
