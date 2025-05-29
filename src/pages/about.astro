@@ -3,13 +3,13 @@ import BlogPostLayout from "$layouts/BlogPostLayout.astro";
 import { kSiteOwner } from "$consts";
 // @ts-ignore
 import AboutContent from "../../content/other/about.typ?html&body";
+import * as AboutPost from "../../content/other/about.typ";
+
+// @ts-ignore
+const { frontmatter } = AboutPost;
 ---
 
-<BlogPostLayout
-  id={"about"}
-  title="关于我"
-  description={`关于 ${kSiteOwner}.`}
-  date={new Date("2023-06-14")}
->
+<BlogPostLayout id={"about"} {...frontmatter}>
+  {}
   <AboutContent />
 </BlogPostLayout>

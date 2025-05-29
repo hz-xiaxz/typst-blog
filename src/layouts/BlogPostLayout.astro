@@ -16,6 +16,7 @@ type Props = CollectionEntry<"blog">["data"] & (IdExt | { id: false });
 const { id, title, description, date, updatedDate, tags, license } =
   Astro.props;
 
+const dateObj = typeof date === "string" ? new Date(date) : date;
 const siteUrl = Astro.url.origin;
 ---
 
@@ -23,23 +24,23 @@ const siteUrl = Astro.url.origin;
   pageTitle={`${title} | ${kSiteTitle}`}
   pageDescription={description}
 >
-  <main class="w-full">
+  <main class="w-full flex flex-col flex-1">
     <article class="flex-1">
       <div class="prose prose-lg max-w-none">
         <section class="mb-8 space-y-4" aria-label="Title">
-          <LicenseBar id={id} title={title} date={date} license={license} />
+          <LicenseBar id={id} title={title} date={dateObj} license={license} />
           <div
             class="flex flex-col lg:flex-row sm:flex-wrap gap-2 text-sm opacity-70"
           >
             {
               [
-                date && (
+                dateObj && (
                   <span>
-                    <FormattedDate date={date} />
+                    <FormattedDate date={dateObj} />
                     {updatedDate && (
                       <span class="ml-1">
                         , Last updated on
-                        <FormattedDate date={updatedDate || date} />
+                        <FormattedDate date={updatedDate || dateObj} />
                       </span>
                     )}
                   </span>
