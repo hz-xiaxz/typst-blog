@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { kSiteTitle, kSiteDescription, kUrlBase } from "$consts";
 import Profile from "$components/Profile.astro";
-import PostsList from "$components/PostsList.astro";
+import PostList from "$components/PostList.astro";
 
 const allPosts = await getCollection("blog");
 const tags = [...new Set(allPosts.map((post: any) => post.data.tags).flat())];
@@ -55,7 +55,7 @@ const tagCounts = tags
                 >全部文章 <Icon name="ri:arrow-right-line" size="16" /></a
               >
             </div>
-            <PostsList size={8} , offset={0} />
+            <PostList size={8} , offset={0} />
           </div>
         </div>
       </div>

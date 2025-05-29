@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostsList from "../../components/PostsList.astro";
+import PostList from "../../components/PostList.astro";
 import { getCollection } from "astro:content";
 import Icon from "node_modules/astro-icon/components/Icon.astro";
 import { kSiteTitle, kUrlBase } from "$consts";
@@ -79,7 +79,7 @@ const postsByYear = allYears.reduce(
               </div>
             </div>
 
-            <PostsList posts={postsByYear[year]} />
+            <PostList posts={postsByYear[year]} />
           </div>
         </div>
       ))

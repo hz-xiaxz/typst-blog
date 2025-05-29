@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostsList from "../../components/PostsList.astro";
+import PostList from "../../components/PostList.astro";
 import Pagination from "../../components/Pagination.astro";
 import { getCollection } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
@@ -43,7 +43,7 @@ const offset = (page.currentPage - 1) * page.size;
           </div>
         </div>
 
-        <PostsList size={page.size} offset={offset} />
+        <PostList size={page.size} offset={offset} />
 
         <Pagination page={page} />
       </div>

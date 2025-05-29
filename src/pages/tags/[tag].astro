@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostsList from "../../components/PostsList.astro";
+import PostList from "../../components/PostList.astro";
 import { kSiteTitle } from "$consts";
 
 interface Props {
@@ -51,7 +51,7 @@ const filteredPostsByTag = allPosts.filter(
 
         {
           filteredPostsByTag && filteredPostsByTag.length > 0 ? (
-            <PostsList posts={filteredPostsByTag} />
+            <PostList posts={filteredPostsByTag} />
           ) : (
             <div class="text-center py-8 text-base-content/60">
               该标签下暂无文章

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostsList from "../../components/PostsList.astro";
+import PostList from "../../components/PostList.astro";
 import { getCollection } from "astro:content";
 import { kSiteTitle, kUrlBase } from "$consts";
 
@@ -66,7 +66,7 @@ const postsByTag = allTags.reduce(
               </div>
             </div>
 
-            <PostsList posts={postsByTag[tagName]} size={5} />
+            <PostList posts={postsByTag[tagName]} size={5} />
 
             {postsByTag[tagName].length > 5 && (
               <div class="text-center">
