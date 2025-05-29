@@ -1,27 +1,15 @@
 ---
-import { kSiteOwner, kUrlBase } from "$consts";
-
-const today = new Date();
+import { kSiteOwner } from "$consts";
 ---
 
-<footer
-  class="footer footer-center max-w-5xl mx-auto bg-base-300 text-base-content pb-16 pt-6 px-4"
->
+<footer class="footer footer-center max-w-5xl mx-auto pb-16 pt-6 px-4">
   <aside class="w-full">
     <div class="divider w-full"></div>
 
-    <div class="text-sm text-base-content mb-2">
-      <span class="inline-flex items-center gap-1">
-        Total Visits: <span id="vercount_value_site_pv" class="tabular-nums"
-          >Loading...</span
-        >
-      </span>
+    <div class="text-sm mb-2">
+      Total Visits: <span id="vercount_value_site_pv">Loading...</span>
       <span class="mx-2">|</span>
-      <span class="inline-flex items-center gap-1">
-        Unique Visitors: <span id="vercount_value_site_uv" class="tabular-nums"
-          >Loading...</span
-        >
-      </span>
+      Unique Visitors: <span id="vercount_value_site_uv">Loading...</span>
     </div>
 
     <p>
