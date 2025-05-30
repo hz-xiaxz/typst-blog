@@ -415,29 +415,29 @@
 }
 
 
-#let auto-div-frame(body) = if is-web-target {
+#let auto-div-frame(body-func) = if is-web-target {
   theme-frame(
     tag: "div",
     theme => {
       set text(fill: theme.main-color)
-      div-frame(attrs: (class: "inline-equation"), body)
+      div-frame(attrs: (class: "inline-equation"), body-func(theme))
     },
   )
 } else {
-  body
+  body-func(default-theme)
 }
 
-#let auto-span-frame(body) = if is-web-target {
+#let auto-span-frame(body-func) = if is-web-target {
   theme-frame(
     tag: "span",
     theme => {
       set text(fill: theme.main-color)
-      span-frame(attrs: (class: "inline-equation"), body)
+      span-frame(attrs: (class: "inline-equation"), body-func(theme))
     },
   )
 } else {
-  body
+  body-func(default-theme)
 }
 
-#let auto-div-pseudocode-list(body) = auto-div-frame(pseudocode-list(body))
+#let auto-div-pseudocode-list(body) = auto-div-frame(_ => pseudocode-list(body))
 
