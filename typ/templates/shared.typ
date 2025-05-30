@@ -86,10 +86,10 @@
   show math.equation: set text(weight: 400)
   show math.equation.where(block: true): it => context if shiroa-sys-target() == "html" {
     theme-frame(
-      tag: "p",
+      tag: "div",
       theme => {
         set text(fill: theme.main-color)
-        span-frame(attrs: (class: "block-equation"), it)
+        p-frame(attrs: (class: "block-equation", role: "math"), it)
       },
     )
   } else {
@@ -440,4 +440,3 @@
 }
 
 #let auto-div-pseudocode-list(body) = auto-div-frame(_ => pseudocode-list(body))
-
