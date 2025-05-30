@@ -17,7 +17,6 @@ const { id, title, description, date, updatedDate, tags, license } =
   Astro.props;
 
 const dateObj = typeof date === "string" ? new Date(date) : date;
-const siteUrl = Astro.url.origin;
 ---
 
 <BaseLayout

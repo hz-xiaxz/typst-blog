@@ -19,48 +19,50 @@ const image = `${kUrlBase}/profile-banner.png`;
 ---
 
 <html lang="zh-cn">
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href={`${kUrlBase}/favicon.svg`} />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${kUrlBase}/favicon.svg`} />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
 
-  <link rel="sitemap" href={`${kUrlBase}/sitemap-index.xml`} />
-  <link
-    rel="alternate"
-    type="application/rss+xml"
-    title={kSiteTitle}
-    href={new URL("rss.xml", Astro.site)}
-  />
+    <link rel="sitemap" href={`${kUrlBase}/sitemap-index.xml`} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={kSiteTitle}
+      href={new URL("rss.xml", Astro.site)}
+    />
 
-  <!-- SEO Verifications -->
-  <meta name="google-site-verification" content={kGoogleSiteVerification} />
-  <meta name="msvalidate.01" content={kBingSIteVerification} />
+    <!-- SEO Verifications -->
+    <meta name="google-site-verification" content={kGoogleSiteVerification} />
+    <meta name="msvalidate.01" content={kBingSIteVerification} />
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href={canonicalURL} />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
 
-  <!-- Primary Meta Tags -->
-  <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url} />
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content={pageDescription} />
-  <meta property="og:image" content={new URL(image, Astro.url)} />
-  <meta property="og:image:alt" content=`${kSiteTitle} Banner` />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image:alt" content=`${kSiteTitle} Banner` />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={Astro.url} />
-  <meta property="twitter:title" content={pageTitle} />
-  <meta property="twitter:description" content={pageDescription} />
-  <meta property="twitter:image" content={new URL(image, Astro.url)} />
-  <meta property="twitter:image:alt" content=`${kSiteTitle} Banner` />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta property="twitter:image:alt" content=`${kSiteTitle} Banner` />
 
-  <!-- Counter -->
-  <script is:inline defer src="https://events.vercount.one/js"></script>
+    <!-- Counter -->
+    <script is:inline defer src="https://events.vercount.one/js"></script>
+  </head>
 
   <body class="bg-base-200">
     <div class="min-h-screen flex flex-col">
