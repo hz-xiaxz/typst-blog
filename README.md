@@ -1,6 +1,6 @@
 # Blog
 
-The starter template for static blogs, powered by [typst](https://github.com/typst/typst) and [Astro](https://astro.build/).
+ParaN3xus's template for static blogs, powered by [Astro](https://astro.build/), [DaisyUI 4](https://v4.daisyui.com/) and [typst](https://github.com/typst/typst).
 
 ## Features
 
