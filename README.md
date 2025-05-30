@@ -1,37 +1,32 @@
 # Blog
 
-ParaN3xus's template for static blogs, powered by [Astro](https://astro.build/), [DaisyUI 4](https://v4.daisyui.com/) and [typst](https://github.com/typst/typst).
+ParaN3xus's template for static blogs, based on a previous version of [PoeMagie](https://github.com/Myriad-Dreamin/blog/), powered by [Astro](https://astro.build/), [DaisyUI 4](https://v4.daisyui.com/) and [typst](https://github.com/typst/typst).
 
 ## Features
 
+- **Typst**: Write blog posts in [Typst](https://typst.app/).
 - **Tags**: Categorize your blog posts with tags.
-- **Search**: Search through your blog posts by "title", "description", or "tags".
-- **Self-Host Fonts**: bundle and self-host fonts via `@fontsource-variable/inter`.
 - **Link Preview**: Link Preview on Open Graph, Facebook, and Twitter.
-- **SEO**: ARIA and Sitemap support.
-- **Click Stats, Like Reaction, and Comment** (Optional): Using an optional backend to store your blog post's click statistics and comments.
+- **Click Stats, Like Reaction, and Comment**: Powered by [Vercount](https://vercount.one/) and [giscus](https://giscus.app/).
 
 Typst-specific features:
 
 - Heading Permalinks and Table of Contents.
-- PDF Archives.
+- Automatically generates yearly PDF archive.
 
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Command             | Action                                           |
+| :------------------ | :----------------------------------------------- |
+| `bun install`       | Installs dependencies                            |
+| `bun run dev`       | Starts local dev server at `localhost:4321`      |
+| `bun run build`     | Build your production site to `./dist/`          |
+| `bun run preview`   | Preview your build locally, before deploying     |
+| `bun run astro ...` | Run CLI commands like `astro add`, `astro check` |
 
-## Editor Setup
-
-### VS Code
+## VSCode Setup
 
 Open using the default setting:
 
@@ -51,13 +46,9 @@ Install suggseted extensions:
 - `myriad-dreamin.tinymist`, for writing blog posts in typst.
 - `astro-build.astro-vscode`, for developing astro components.
 
-### Official Web App
-
-(Untested) [Start from GitHub](https://typst.app/) and open your blog repository. You should be able to write articles like you do in local.
-
 ## Writing
 
-Create a new blog post in [`content/article`:](https://github.com/Myriad-Dreamin/Myriad-Dreamin/tree/ffbfbbad99c172c7e6d60c511fdee2c24d9af7ff/article/)
+Create a new blog post in [`content/article`:](https://github.com/ParaN3xus/blog-posts)
 
 ```typ
 #import "/typ/templates/blog.typ": *
@@ -71,16 +62,7 @@ Create a new blog post in [`content/article`:](https://github.com/Myriad-Dreamin
 )
 ```
 
-The `blog-tags` index is defined in [`content/article/blog-tags.typ`](./typ/templates/mod.typ#L14) to ensure type safety. You can add your own tags by adding a new `blog-tags` index.
-
-There is a sample blog post in [`content/article/personal-info.typ`](https://github.com/Myriad-Dreamin/Myriad-Dreamin/tree/ffbfbbad99c172c7e6d60c511fdee2c24d9af7ff/article/personal-info.typ).
-
-## Deploying to GitHub Pages
-
-1. Set the URL_BASE environment variable to your own repository in [Environments](../../settings/environments).
-   - For a GitHub page `https://username.github.io/repo`, the URL base is `/repo/`.
-2. Change Source's "Build and deployment" to "GitHub Actions" in [Page Settings](../../settings/pages).
-3. Push your changes to the `main` branch and it will automatically deploy to GitHub Pages by [CI](.github/workflows/gh-pages.yml).
+The `blog-tags` index is defined in [`content/article/blog-tags.typ`](./typ/templates/mod.typ#L43) to ensure type safety. You can add your own tags by adding a new `blog-tags` index.
 
 ## Customization
 
@@ -93,24 +75,18 @@ There is a sample blog post in [`content/article/personal-info.typ`](https://git
 Improve experience:
 
 - [ ] More friendly content submodule for forks
-- [ ] Split Backend Components to a separate repository
 
 Improve website:
 
-- [ ] Intro-site Link Hover Preview
 - [ ] [Last Modified Time](https://5-0-0-beta.docs.astro.build/en/recipes/modified-time/)
 - [ ] Styling
-  - [ ] Table
   - [ ] Inline Raw
   - [ ] Blocky Raw
-- [ ] Index Page Design
-  - [ ] Badge
-- [ ] Comment Reply
 - [ ] Better [`theme-frame`](typ/templates/theme.typ)
-- [ ] Refactor code to publish packages
 
 ## Credit
 
-- This theme is based off of the lovely [Bear Blog.](https://github.com/HermanMartinus/bearblog/)
-- The astro integration is supported by [astro-typst.](https://github.com/overflowcat/astro-typst)
-- And, the lovely [typst.](https://github.com/typst/typst)
+- This theme is based off of the lovely [PoeMagie](https://github.com/Myriad-Dreamin/blog/).
+- The astro integration is supported by [astro-typst](https://github.com/overflowcat/astro-typst).
+- The web styles are powered by [TailwindCSS](https://tailwindcss.com/) and [DaisyUI 4](https://v4.daisyui.com/).
+- And, the lovely [typst](https://github.com/typst/typst).
