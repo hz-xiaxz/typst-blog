@@ -81,7 +81,7 @@ const currentLicense: LicenseInfo | undefined =
       <div class="flex items-center gap-1 w-5 h-5">
         <Fragment set:html={currentLicense.icons} />
       </div>
-      <a href={siteUrl + "/articles/" + id}>{title}</a> © {date.getFullYear()}{" "}
+      <a href={siteUrl + "/article/" + id}>{title}</a> © {date.getFullYear()}{" "}
       by
       <a href={siteUrl}>{kSiteOwner}</a>
       is licensed under
