@@ -247,7 +247,7 @@
     // set basic document metadata
     set document(
       author: ("ParaN3xus",),
-      title: title,
+      ..if not is-web-target { (title: title) },
     )
 
     // markup setting
