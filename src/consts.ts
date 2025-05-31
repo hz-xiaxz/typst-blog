@@ -56,7 +56,7 @@ export const kGiscusConfig = {
 export const kFriendLinks = [
   {
     name: "sjfh's Homepage",
-    url: "https://sjfh.top/",
+    url: "https://sjfh.xyz/",
     desc: "无问西东.",
   },
   {
