@@ -42,11 +42,11 @@ export default defineConfig({
     sitemap(),
     icon(),
     typst({
-      // Always builds HTML files
-      mode: {
-        default: "html",
-        detect: () => "html",
+      options: {
+        remPx: 14,
       },
+      // Always builds HTML files
+      target: () => "html",
     }),
     copyAssetsIntegration()
   ],
