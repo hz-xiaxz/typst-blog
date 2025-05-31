@@ -4,15 +4,13 @@
 #let is-external = state("about:is-external", false)
 
 #let self-desc = [
-  Myriad Dreamin puts down daily life, essays, and notes within _PoeMagie._
+  我是夏轩哲，复旦物理系大三学生。感兴趣凝聚态理论，特别是实验相关的唯象学。我使用变分蒙特卡洛 (Variational Monte Carlo, VMC) 方法研究量子多体系统。
 
-  Myriad Dreamin 在 _PoeMagie_ 中记录生活中的日常、随笔与笔记。
+  我用 #link("https://julialang.org/")[julia] 语言编程。
 
-  I'm a student. I make compilers and software in my spare time. I have a fictional character named raihamiya.
+  这个网站会当作日记使用，欢迎用任何方式跟我交朋友！
 
-  我是一名学生。我在空余时间开发编译器和软件。我拥有一个名为「礼羽みや」的虚构角色。
-
-  #link("https://github.com/Myriad-Dreamin")[GitHub]/#link("https://skeb.jp/@camiyoru")[Skeb]. Buy me a coffee on #link("https://www.unifans.com/camiyoru")[Unifans]/#link("https://afdian.com/a/camiyoru")[Afdian].
+  #link("https://github.com/hz-xiaxz")[GitHub]
 ]
 
 #if sys-is-html-target {
@@ -111,7 +109,7 @@
       context div(
         attrs: (
           class: "thumbnail-container link",
-          title: "礼羽みや, artwork by ちょみます (@tyomimas)",
+          title: "null",
           onclick: if is-external.get() {
             "location.href='https://www.myriad-dreamin.com/article/personal-info'"
           } else {

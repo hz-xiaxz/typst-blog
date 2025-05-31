@@ -14,13 +14,4 @@
 #include "/content/other/about.typ"
 
 = 个人信息
-
-- 名字：Miya Reiha
-- 生日：12月24日
-- 年龄：14
-
-= Personal Information
-
-- Name：Miya Reiha
-- Birthday：12. 24
-- Year：14
+TODO
