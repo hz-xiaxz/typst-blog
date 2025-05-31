@@ -1,4 +1,7 @@
 packages:
-  - "."
-  - "packages/*"
-  - "!**/test/**"
+  - .
+  - packages/*
+  - '!**/test/**'
+ignoredBuiltDependencies:
+  - esbuild
+  - sharp

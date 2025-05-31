@@ -1,4 +1,4 @@
 [submodule "typ"]
 	path = typ
-	url = https://github.com/Myriad-Dreamin/typ.git
+	url = git@github.com:hz-xiaxz/blog-content.git
 	branch = main

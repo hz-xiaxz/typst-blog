@@ -20,13 +20,13 @@
     "@astrojs/sitemap": "^3.4.0",
     "@fontsource-variable/inter": "^5.2.5",
     "@myriaddreamin/create-tylant": "workspace:^",
-    "@myriaddreamin/typst-ts-node-compiler": "^0.6.0-rc1",
-    "@myriaddreamin/tylant-theme-toggle": "workspace:^",
+    "@myriaddreamin/tylant": "workspace:^",
     "@myriaddreamin/tylant-comment": "workspace:^",
     "@myriaddreamin/tylant-like-reaction": "workspace:^",
     "@myriaddreamin/tylant-pdf-archive": "workspace:^",
-    "@myriaddreamin/tylant": "workspace:^",
-    "astro": "^5.8.0",
+    "@myriaddreamin/tylant-theme-toggle": "workspace:^",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.6.0",
+    "astro": "^5.8.1",
     "astro-typst": "0.9.0-rc1"
   },
   "devDependencies": {
