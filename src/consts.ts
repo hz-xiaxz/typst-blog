@@ -91,14 +91,14 @@ export const kCommentList = COMMENTS;
  */
 export const kFriendLinks = [
   {
-    name: "7mile",
-    url: "https://7li.moe/",
-    desc: "一切都有其意义，包括停滞不前的日子。",
+    name: "Yichi Zang",
+    url: "https://yichizang.github.io/",
+    desc: "CATegory 猫窝",
   },
   {
-    name: "Margatroid",
-    url: "https://blog.mgt.moe/",
-    desc: "SIGSLEEP Fellow",
+    name: "Yutai Zhang",
+    url: "https://sites.google.com/view/yutaizhang",
+    desc: "Yutai Zhang's Homepage",
   },
 ];
 /**
