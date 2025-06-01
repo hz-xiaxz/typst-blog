@@ -1,4 +1,4 @@
 packages:
-  - "."
-  - "packages/tylant/packages/*"
-  - "!**/test/**"
+  - .
+  - packages/*
+  - '!**/test/**'
