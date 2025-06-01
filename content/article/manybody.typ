@@ -3,7 +3,7 @@
   title: "ManyBody",
   desc: [Many Body Physics Note],
   date: "2025-05-31",
-  tags: (blog-tags.programming, blog-tags.typst,),
+  tags: (blog-tags.physics,),
 )
 #import "@preview/physica:0.9.5": *
 #import "@preview/fletcher:0.5.3" as fletcher: diagram, node, edge
