@@ -34,16 +34,6 @@ export const copyTemplateFilesAndFolders = async (
   destination,
   projectName
 ) => {
-  const theVersion = JSON.parse(
-    await fs.readFile(
-      path.resolve(
-        path.dirname(fileURLToPath(import.meta.url)),
-        "package.json"
-      ),
-      "utf8"
-    )
-  ).version;
-
   const filesAndFolders = await fs.readdir(source);
 
   for (const entry of filesAndFolders) {
@@ -88,44 +78,57 @@ export const init = async (projectName) => {
     "templates/minimal"
   );
 
-  try {
-    console.log("📑  Copying files...");
+  const inDestOpts = {
+    cwd: destination,
+    stdio: "inherit",
+  };
 
+  let okay = false;
+  try {
+    console.log(chalk.blueBright(`Copying files...`));
     await fs.mkdir(destination);
     await copyTemplateFilesAndFolders(source, destination, projectName);
-
-    execSync("git init", {
-      cwd: destination,
-      stdio: "inherit",
-    });
-    execSync("git branch -m main", {
-      cwd: destination,
-      stdio: "inherit",
-    });
-    execSync("git add .", {
-      cwd: destination,
-      stdio: "inherit",
-    });
-    execSync("git commit -m 'feat: init'", {
-      cwd: destination,
-      stdio: "inherit",
-    });
     await fs.mkdir(path.join(destination, "packages"), { recursive: true });
+    console.log(chalk.greenBright("Files copied..."));
 
-    console.log("📑  Files copied...");
+    execSync("git init", inDestOpts);
+    execSync("git branch -m main", inDestOpts);
+    execSync("git add .", inDestOpts);
+    execSync("git commit -m 'feat: init'", inDestOpts);
+
+    const mayFailCommands = [
+      "git submodule add -b main https://github.com/Myriad-Dreamin/typ.git typ",
+      "git submodule add -b main https://github.com/Myriad-Dreamin/tylant.git packages/tylant",
+      "git submodule update --init --recursive",
+      "pnpm install",
+    ];
+
+    const hintCmds = [`cd ${destination}`, ...mayFailCommands];
     console.log(
-      chalk.green(
-        `
-cd ${projectName}
-git submodule add -b main https://github.com/Myriad-Dreamin/typ.git typ
-git submodule add -b main https://github.com/Myriad-Dreamin/tylant.git packages/tylant
-git submodule update --init --recursive
-pnpm install
-pnpm run dev`
-      )
+      chalk.blueBright(
+        `If any of the following commands fail, you can run them manually:`
+      ) + hintCmds.map((cmd) => `\n  ${cmd}`).join("")
     );
+
+    for (const cmd of mayFailCommands) {
+      console.log(chalk.blueBright(`Executing: ${cmd}`));
+      execSync(cmd, inDestOpts);
+    }
+
+    okay = true;
   } catch (error) {
     console.log(error);
+  }
+
+  console.log(
+    chalk.greenBright(
+      `\n\nYour blog is ready! You can start it by running:\n  cd ${destination}\n  pnpm run dev`
+    )
+  );
+
+  if (okay) {
+    console.log(chalk.blueBright(`Executing: pnpm run dev`));
+    execSync("pnpm run dev", inDestOpts);
   }
 };
 
