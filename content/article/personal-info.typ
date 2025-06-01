@@ -36,7 +36,7 @@
   #par[#text(size: 10pt)[_Shanghai, China_ | _B.S. in physics_]]
 ]
 #par[]
-- GPA: 3.82/4.00, Rank: 5/75 (< 7%)
+- GPA: 3.82/4.00, Rank: 5/80 
 - _Graduate Courses_: Quantum Mechanics Ⅱ (A), Group Theory (A), Solid State Physics Theory (A)
 - Selected Course Projects:
   1. _Percolation Model and Epidemic_ in Prof. Xiaopeng Li's course. We investigated how the percolation model could capture the trend of epidemic spreading. We used the Markov Chain Monte Carlo method to numerically show the transition point of epidemic spread.
