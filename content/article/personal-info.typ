@@ -1,16 +1,16 @@
 #import "/typ/templates/blog.typ": *
 #show: main.with(
-  title: "Personal Information",
-  desc: [This is a test post.],
-  date: "2025-04-25",
+  title: "Resume",
+  desc: [My Academic Resume],
+  date: "2025-06-01",
   tags: (
     blog-tags.misc,
   ),
   show-outline: false,
 )
 // #set text(font: "New Computer Modern", lang: "en", size: 11pt) // Or another common font like "Linux Libertine"
-#show link: it => underline(it)
-#set heading(numbering: none)
+// #show link: it => underline(it)
+// #set heading(numbering: none)
 
 // --- Author Information ---
 #block(width: 100%)[

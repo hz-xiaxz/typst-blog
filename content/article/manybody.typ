@@ -430,7 +430,7 @@ Then the system can form a ground state different from the magnetic etc. ones.
 #definition[
   #strong[Charge Density Wave]
 
-  if $phi=0$, the spin density $S^z(arrow(r)) = n_(arrow.t)(arrow(r)) - n_(arrow.b)(arrow(r)) = 0$, the charge density $n(arrow(r)) = n_(arrow.t)(arrow(r)) + n_(arrow.b)(arrow(r)) = n + 2A cos(arrow(Q) dot arrow(r))$ is
+  if $phi=0$, the spin density $S^z (arrow(r)) = n_(arrow.t)(arrow(r)) - n_(arrow.b)(arrow(r)) = 0$, the charge density $n(arrow(r)) = n_(arrow.t)(arrow(r)) + n_(arrow.b)(arrow(r)) = n + 2A cos(arrow(Q) dot arrow(r))$ is
   periodic with wave vector $arrow(Q)$. We call this the #strong[Charge Density Wave].
 
   #strong[Spin Density Wave]
