@@ -10,8 +10,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  pages: write
-  id-token: write
+  deployments: write
   contents: read
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
@@ -65,3 +64,11 @@ jobs:
           folder: dist
           token: ${{ secrets.TARGET_REPO_TOKEN }}
           repository-name: ParaN3xus/paran3xus.github.io
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=blog
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
