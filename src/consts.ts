@@ -43,10 +43,10 @@ export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
  * giscus config.
  */
 export const kGiscusConfig = {
-  repo: "paran3xus/paran3xus.github.io",
-  repoId: "R_kgDOOxdsrA",
+  repo: "paran3xus/blog-posts",
+  repoId: "R_kgDOOxdDAg",
   category: "General",
-  categoryId: "DIC_kwDOOxdsrM4CqpWy",
+  categoryId: "DIC_kwDOOxdDAs4Cq94E",
   enableReaction: kEnableReaction,
 };
 
