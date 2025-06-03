@@ -57,14 +57,6 @@ jobs:
       - name: Build Blog
         run: bun run build
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist
-          token: ${{ secrets.TARGET_REPO_TOKEN }}
-          repository-name: ParaN3xus/paran3xus.github.io
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
