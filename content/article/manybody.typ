@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 #show: main.with(
-  title: "ManyBody",
+  title: "Many Body",
   desc: [Many Body Physics Note],
   date: "2025-05-31",
   tags: (blog-tags.physics,),
