@@ -17,7 +17,7 @@
   #align(center)[
     #text(size: 22pt, weight: "bold")[Xuanzhe Xia]
     #v(0.4em)
-    #link("mailto:xzxia22@m.fudan.edu.cn")[xzxia22\@m.fudan.edu.cn] | GitHub: #link("https://github.com/hz-xiaxz")[hz-xiaxz]
+    #link("mailto:xzxia22(at)m.fudan.edu.cn")[xzxia22\@m.fudan.edu.cn] | GitHub: #link("https://github.com/hz-xiaxz")[hz-xiaxz]
     #v(0.4em)
     // #text(size: 10pt)[#datetime.today().display(date: "long")]
   ]
