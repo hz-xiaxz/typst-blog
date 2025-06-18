@@ -2,7 +2,7 @@
 #show: main.with(
   title: "Resume",
   desc: [My Academic Resume],
-  date: "2025-06-01",
+  date: "2025-06-18",
   tags: (
     blog-tags.misc,
   ),
