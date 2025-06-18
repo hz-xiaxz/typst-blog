@@ -1,5 +1,52 @@
 ---
+const translateEn = {
+  searchLabel: "Search:&nbsp;",
+  search: "Search",
+  keywords: "Keywords...",
+  sortBy: "Sort by",
+  date: "Date",
+  dateAsc: "Date Asc",
+  modifiedDate: "Modified Date",
+  modifiedDateAsc: "Modified Date Asc",
+  title: "Title",
+  tags: "Tags",
 
+  searchByKeywords: "Search by keywords",
+  sortByDate: "Sort by date in descending order",
+  sortByDateAsc: "Sort by date in ascending order",
+  sortByModifiedDate: "Sort by modified date in descending order",
+  sortByModifiedDateAsc: "Sort by modified date in ascending order",
+  sortByTitle: "Sort by title",
+  sortByTags: "Sort by tags",
+} as const;
+
+const translates: Record<string, Record<keyof typeof translateEn, string>> = {
+  zh: {
+    searchLabel: "搜索：",
+    search: "搜索",
+    keywords: "关键词...",
+    sortBy: "排序方式",
+    date: "日期",
+    dateAsc: "日期升序",
+    modifiedDate: "修改日期",
+    modifiedDateAsc: "修改日期升序",
+    title: "标题",
+    tags: "标签",
+
+    searchByKeywords: "按关键词搜索",
+    sortByDate: "按日期降序排序",
+    sortByDateAsc: "按日期升序排序",
+    sortByModifiedDate: "按修改日期降序排序",
+    sortByModifiedDateAsc: "按修改日期升序排序",
+    sortByTitle: "按标题排序",
+    sortByTags: "按标签排序",
+  },
+  en: translateEn,
+};
+const locale = Astro.currentLocale || "en";
+const t = (key: keyof typeof translateEn) => {
+  return translates[locale][key] || translates.en[key];
+};
 ---
 
 <style>
@@ -24,25 +71,29 @@
   }
 </style>
 
-<div aria-label="Search" role="search">
+<div aria-label={t("search")} role="search">
   <div class="search enabled">
-    <div>Search:&nbsp;</div>
+    <div set:html={t("searchLabel")} />
     <input
       id="search-text"
       type="text"
-      placeholder="Keywords..."
+      placeholder={t("keywords")}
       class="search-box"
-      title="Search by keywords"
+      title={t("searchByKeywords")}
       role="searchbox"
     />
-    <select id="search-sort" class="search-box" title="Sort by">
-      <option value="date" title="Sort by date in descending order">Date</option
+    <select id="search-sort" class="search-box" title={t("sortBy")}>
+      <option value="date" title={t("sortByDate")}>{t("date")}</option>
+      <option value="date-asc" title={t("sortByDateAsc")}>{t("dateAsc")}</option
       >
-      <option value="date-asc" title="Sort by date in ascending order"
-        >Date Asc</option
+      <option value="modified-date" title={t("sortByModifiedDate")}
+        >{t("modifiedDate")}</option
       >
-      <option value="title" title="Sort by title">Title</option>
-      <option value="tag" title="Sort by tags">Tags</option>
+      <option value="modified-date-asc" title={t("sortByModifiedDateAsc")}
+        >{t("modifiedDateAsc")}</option
+      >
+      <option value="title" title={t("sortByTitle")}>{t("title")}</option>
+      <option value="tag" title={t("sortByTags")}>{t("tags")}</option>
     </select>
   </div>
   <script>
@@ -68,6 +119,9 @@
           const articleMeta = JSON.parse(li.dataset.articleMeta || "{}");
           if (articleMeta?.date) {
             articleMeta.date = new Date(articleMeta.date);
+          }
+          if (articleMeta?.modifiedDate) {
+            articleMeta.modifiedDate = new Date(articleMeta.modifiedDate);
           }
           return {
             id: articleId!,
@@ -97,27 +151,45 @@
       }
 
       posts = posts.sort(
-        sort === "date"
-          ? (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-          : sort === "date-asc"
-            ? (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
-            : sort === "title"
-              ? (a, b) => a.data.title.localeCompare(b.data.title)
-              : (a, b) => {
-                  const aTags = a.data.tags || [];
-                  const bTags = b.data.tags || [];
-                  if (aTags.length !== bTags.length) {
-                    return aTags.length - bTags.length;
-                  }
-                  for (let i = 0; i < aTags.length; i++) {
-                    const aTag = aTags[i];
-                    const bTag = bTags[i];
-                    if (aTag !== bTag) {
-                      return aTag.localeCompare(bTag);
-                    }
-                  }
-                  return 0;
+        (() => {
+          switch (sort) {
+            case "date":
+              return (a: SearchItem, b: SearchItem) =>
+                b.data.date.valueOf() - a.data.date.valueOf();
+            case "date-asc":
+              return (a: SearchItem, b: SearchItem) =>
+                a.data.date.valueOf() - b.data.date.valueOf();
+            case "modified-date":
+              return (a: SearchItem, b: SearchItem) =>
+                (b.data.modifiedDate?.valueOf() || 0) -
+                (a.data.modifiedDate?.valueOf() || 0);
+            case "modified-date-asc":
+              return (a: SearchItem, b: SearchItem) =>
+                (a.data.modifiedDate?.valueOf() || 0) -
+                (b.data.modifiedDate?.valueOf() || 0);
+            case "title":
+              return (a: SearchItem, b: SearchItem) =>
+                a.data.title.localeCompare(b.data.title);
+            case "tag":
+              return (a: SearchItem, b: SearchItem) => {
+                const aTags = a.data.tags || [];
+                const bTags = b.data.tags || [];
+                if (aTags.length !== bTags.length) {
+                  return aTags.length - bTags.length;
                 }
+                for (let i = 0; i < aTags.length; i++) {
+                  const aTag = aTags[i];
+                  const bTag = bTags[i];
+                  if (aTag !== bTag) {
+                    return aTag.localeCompare(bTag);
+                  }
+                }
+                return 0;
+              };
+            default:
+              throw new Error(`Unknown sort type: ${sort}`);
+          }
+        })()
       );
       if (sort !== "date") {
         params.set("sort", sort);
