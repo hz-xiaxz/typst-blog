@@ -37,7 +37,7 @@
 ]
 #par[]
 - GPA: 3.84/4.00, Rank: 4/84
-- _Graduate Courses_: Quantum Mechanics Ⅱ (A), Group Theory (A), Solid State Physics Theory (A)
+- _Graduate Courses_: Quantum Mechanics Ⅱ (A), Group Theory (A), Solid State Physics Theory (A), Gauge Theory (A), Electron Structure of Solids (A)
 - Selected Course Projects:
   1. _Percolation Model and Epidemic_ in Prof. Xiaopeng Li's course. We investigated how the percolation model could capture the trend of epidemic spreading. We used the Markov Chain Monte Carlo method to numerically show the transition point of epidemic spread.
   2. _Failure of Neumann's Principle_ in Prof. Yang Qi's course. We showed that the celebrated Neumann’s principle could be violated in non-equilibrium systems and in the context of Modern Theory of Polarization. We then suggested a modern extension of it.
