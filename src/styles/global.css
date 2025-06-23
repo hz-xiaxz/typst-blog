@@ -51,11 +51,7 @@ figcaption {
   width: fit-content;
   margin: 0 0.15em;
 }
-.block-equation {
-  display: grid;
-  place-items: center;
-  overflow-x: auto;
-}
+
 .block-list,
 .block-list li {
   margin: 0;
@@ -69,6 +65,30 @@ figcaption {
 }
 .block-list.accent > li {
   border-left: 2.5px solid var(--accent);
+}
+
+.jumpable {
+  scroll-margin-top: 8rem;
+}
+
+.equation-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.equation-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.equation-numbering {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Outline */

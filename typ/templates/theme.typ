@@ -20,26 +20,14 @@
 }
 
 
-#let theme-frame(render, tag: "div", theme-tag: none) = if sys-is-html-target {
+#let theme-frame(render, tag: "div", theme-tag: none, attrs: (:)) = if sys-is-html-target {
   if theme-tag == none {
     theme-tag = tag
   }
-  html.elem(
-    tag,
-    attrs: ("class": "not-prose code-image themed"),
-    {
-      html.elem(
-        theme-tag,
-        render(dark-theme),
-        attrs: ("class": "theme-dark"),
-      )
-      html.elem(
-        theme-tag,
-        render(light-theme),
-        attrs: ("class": "theme-light"),
-      )
-    },
-  )
+  html.elem(tag, attrs: ("class": "not-prose code-image themed", ..attrs), {
+    html.elem(theme-tag, render(dark-theme), attrs: ("class": "theme-dark"))
+    html.elem(theme-tag, render(light-theme), attrs: ("class": "theme-light"))
+  })
 } else {
   render(default-theme)
 }
