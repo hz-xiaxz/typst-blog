@@ -72,9 +72,15 @@ figcaption {
   margin: 24px 0;
 }
 
+.block-equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .equation-container {
   position: relative;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }
