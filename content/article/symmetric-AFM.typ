@@ -2,7 +2,7 @@
 #show: main.with(
   title: "Symmetric Antiferromagnetic Hamiltonians",
   desc: [AKLT, Majumdar-Ghosh, and models that amaze me...],
-  date: "2025-06-9",
+  date: "2025-06-09",
   tags: (blog-tags.physics,),
 )
 #show link:underline
