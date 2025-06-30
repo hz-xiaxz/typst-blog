@@ -461,10 +461,16 @@
 }
 
 
+#let common-theme-styles(body) = {
+  set text(font: pdf-fonts)
+
+  body
+}
+
 #let auto-div-frame(body-func) = if is-web-target {
   theme-frame(tag: "div", theme => {
     set text(fill: theme.main-color)
-    div-frame(attrs: (class: "inline-equation"), body-func(theme))
+    div-frame(attrs: (class: "inline-equation"), common-theme-styles(body-func(theme)))
   })
 } else {
   body-func(default-theme)
@@ -473,7 +479,7 @@
 #let auto-span-frame(body-func) = if is-web-target {
   theme-frame(tag: "span", theme => {
     set text(fill: theme.main-color)
-    span-frame(attrs: (class: "inline-equation"), body-func(theme))
+    span-frame(attrs: (class: "inline-equation"), common-theme-styles(body-func(theme)))
   })
 } else {
   body-func(default-theme)
