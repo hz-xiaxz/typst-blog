@@ -1,5 +1,5 @@
 #import "/typ/templates/blog.typ": *
-#show: main.with(title: "2025-07-01 日记", desc: [阅读], date: "2025-07-01", tags: (blog-tags.diary))
+#show: main.with(title: "2025-07-01-日记", desc: [阅读], date: "2025-07-01", tags: (blog-tags.diary,))
 = PHYSICAL REVIEW X 14, 021010 (2024)
 Quantum Electrodynamics in 2 + 1 Dimensions as the Organizing Principle of a Triangular Lattice Antiferromagnet 
 
