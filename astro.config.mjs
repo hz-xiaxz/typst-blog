@@ -5,6 +5,7 @@ import { typst } from "astro-typst";
 import { loadEnv } from "vite";
 import icon from "astro-icon";
 import copyAssetsIntegration from './integrations/copy-assets.js';
+import { resolve } from "path";
 
 // Please check `defineConfig/env` in astro.config.mjs for schema
 const e = loadEnv(process.env.NODE_ENV || "", process.cwd(), "");
@@ -47,6 +48,7 @@ export default defineConfig({
       },
       // Always builds HTML files
       target: () => "html",
+      fontArgs: [{ fontPaths: [resolve(import.meta.dirname, "assets/fonts/")] }]
     }),
     copyAssetsIntegration()
   ],
