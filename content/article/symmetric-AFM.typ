@@ -7,7 +7,7 @@
 )
 #show link:underline
 #import "@preview/physica:0.9.5":*
-#import "@preview/theorion:0.3.3":*
+#import "@preview/theorion:0.4.0":*
 #set math.equation(numbering: "(1)")
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 #import "@preview/cetz:0.3.4"

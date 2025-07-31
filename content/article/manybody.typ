@@ -7,11 +7,11 @@
 )
 #import "@preview/physica:0.9.5": *
 #import "@preview/fletcher:0.5.3" as fletcher: diagram, node, edge
+#import "@preview/theorion:0.4.0": *
 #let colred(x) = text(fill: red, $#x$)
 #let zh(content) = text(font: "Noto Sans CJK SC", content)
 #set math.equation(numbering: "(1)")
 #set heading(numbering: "1.1")
-#import "@preview/theorion:0.3.3": *
 #import cosmos.clouds: *
 #show: show-theorion
 

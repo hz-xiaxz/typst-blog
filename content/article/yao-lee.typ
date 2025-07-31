@@ -1,7 +1,7 @@
 #import "/typ/templates/blog.typ": *
 #show: main.with(title: "Yao-Lee Model", desc: [Elegant Chinese work], date: "2025-06-29", tags: (blog-tags.physics,))
 #import "@preview/physica:0.9.5": *
-#import "@preview/theorion:0.3.3": *
+#import "@preview/theorion:0.4.0": *
 #import cosmos.fancy: *
 #show: show-theorion
 #set-inherited-levels(1)

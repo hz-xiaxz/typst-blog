@@ -18,7 +18,7 @@ The S = 1/2 Kagome Heisenberg Antiferromagnet Revisited
 但这个effective XY model看上去有意思，可能是Clark他们做工作的motivation
 
 == Field theoretical approach
-1. $QED_3$ with $N_f->infinity$, flow to a CFT fixed point
+1. $Q E D_3$ with $N_f->infinity$, flow to a CFT fixed point
 
 存在费米子的时候，*屏蔽效应*会将库仑相互作用从 $k/q^2$ dress 成 $k/(N_f abs(q))$，小q长波的行为被减弱
 
