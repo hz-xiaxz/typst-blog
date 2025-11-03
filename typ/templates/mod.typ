@@ -56,6 +56,8 @@
   pytorch: "PyTorch",
   rl: "Reinforcement Learning",
   programming: "Programming",
+  reverse: "Reverse Engineering",
+  vrchat: "VRChat",
 )
 
 #let archive-tags = (
