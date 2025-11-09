@@ -58,6 +58,7 @@
   programming: "Programming",
   reverse: "Reverse Engineering",
   vrchat: "VRChat",
+  diy: "DIY",
 )
 
 #let archive-tags = (
