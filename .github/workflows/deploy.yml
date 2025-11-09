@@ -32,6 +32,15 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "24"
+
+      - name: Cache Node Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/yarn/v6
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+
       - name: Install dependencies with Yarn
         uses: borales/actions-yarn@v4
         with:
@@ -62,17 +71,6 @@ jobs:
           wget -O noto-sans-cjk.zip "https://github.com/notofonts/noto-cjk/releases/download/Sans2.004/03_NotoSansCJK-OTC.zip"
           unzip -o noto-sans-cjk.zip -d assets/fonts/noto-cjk
           rm noto-sans-cjk.zip
-
-      - name: Cache Node Dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/yarn/v6
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-
-      - name: Install dependencies
-        run: yarn
 
       - name: Build Blog
         run: yarn build
