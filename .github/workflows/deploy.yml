@@ -28,8 +28,14 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Install dependencies with Yarn
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
 
       - name: Sync Environment Variables
         run: cp content/.env.blog .env
@@ -57,19 +63,19 @@ jobs:
           unzip -o noto-sans-cjk.zip -d assets/fonts/noto-cjk
           rm noto-sans-cjk.zip
 
-      - name: Cache Bun Dependencies
+      - name: Cache Node Dependencies
         uses: actions/cache@v4
         with:
           path: |
-            ~/.bun/install/cache
+            ~/.cache/yarn/v6
             node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
       - name: Install dependencies
-        run: bun install
+        run: yarn
 
       - name: Build Blog
-        run: bun run build
+        run: yarn build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
