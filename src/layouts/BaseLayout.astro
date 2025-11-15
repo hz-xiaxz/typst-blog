@@ -9,8 +9,6 @@ import Footer from "../components/Footer.astro";
 import {
   kSiteTitle,
   kUrlBase,
-  kGoogleSiteVerification,
-  kBingSIteVerification,
 } from "$consts";
 const { pageTitle, pageDescription } = Astro.props;
 
@@ -33,9 +31,6 @@ const image = `${kUrlBase}/profile-banner.png`;
       href={new URL("rss.xml", Astro.site)}
     />
 
-    <!-- SEO Verifications -->
-    <meta name="google-site-verification" content={kGoogleSiteVerification} />
-    <meta name="msvalidate.01" content={kBingSIteVerification} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />

@@ -58,6 +58,7 @@
   programming: "Programming",
   reverse: "Reverse Engineering",
   vrchat: "VRChat",
+  physics: "Physics",
   diy: "DIY",
 )
 

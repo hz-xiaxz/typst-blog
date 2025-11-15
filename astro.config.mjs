@@ -34,8 +34,6 @@ export default defineConfig({
       SITE: EnvStr(),
       URL_BASE: EnvStr(true),
 
-      GOOGLE_SITE_VERIFICATION: EnvStr(),
-      BING_SITE_VERIFICATION: EnvStr(),
     },
   },
 

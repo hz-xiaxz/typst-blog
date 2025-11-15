@@ -36,35 +36,22 @@ export const kSiteDescription = config.SITE_DESCRIPTION;
  */
 export const kUrlBase = (config.URL_BASE || "").replace(/\/$/, "");
 
-export const kBingSIteVerification = config.BING_SITE_VERIFICATION;
-export const kGoogleSiteVerification = config.GOOGLE_SITE_VERIFICATION;
 
 /**
  * giscus config.
  */
 export const kGiscusConfig = {
-  repo: "paran3xus/blog-posts",
-  repoId: "R_kgDOOxdDAg",
+  repo: "hz-xiaxz/blog-content",
+  repoId: "R_kgDOOzmTGQ",
   category: "General",
-  categoryId: "DIC_kwDOOxdDAs4Cq94E",
+  categoryId: "DIC_kwDOOzmTGc4Cx0jT",
   enableReaction: kEnableReaction,
 };
 
 /**
  * The friend link info.
  */
-export const kFriendLinks = [
-  {
-    name: "sjfh's Homepage",
-    url: "https://sjfh.xyz/",
-    desc: "无问西东.",
-  },
-  {
-    name: "JrHimself",
-    url: "https://www.jrhim.com/",
-    desc: "融雪之前, 牧神搭上春色的火车, 而日光在我们之间.",
-  },
-];
+export const kFriendLinks = [];
 
 
 /**
@@ -73,13 +60,8 @@ export const kFriendLinks = [
 export const kSocialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com/paran3xus",
+    url: "https://github.com/hz-xiaxz",
     icon: "ri:github-fill",
-  },
-  {
-    name: "Telegram",
-    url: "https://t.me/paran3xus",
-    icon: "ri:telegram-fill",
   },
 ];
 
