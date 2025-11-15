@@ -54,6 +54,7 @@ export const GET: APIRoute = async ({ params, props }) => {
 
 function generateArchiveTypst(year: number, articles: any[]) {
   const indices = articles.map(a => `    "${a.id}"`).join(',\n');
+  const typstSafeIndices = articles.length > 0 ? `${indices},` : '';
 
   const includes = articles.map(a =>
     `#include "/content/article/${a.id}.typ"\n#pagebreak(weak: true)`
@@ -71,7 +72,7 @@ function generateArchiveTypst(year: number, articles: any[]) {
     archive-tags.blog-post,
   ),
   archive-indices: (
-${indices}
+${typstSafeIndices}
   ),
 )
 
