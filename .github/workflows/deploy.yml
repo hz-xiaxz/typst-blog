@@ -12,6 +12,8 @@ on:
 permissions:
   deployments: write
   contents: read
+  pages: write
+  id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -22,6 +24,9 @@ concurrency:
 jobs:
   deploy-blog:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -74,11 +79,10 @@ jobs:
 
       - name: Build Blog
         run: yarn build
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=blog
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
