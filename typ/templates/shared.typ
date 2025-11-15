@@ -44,6 +44,7 @@
 #let div-frame(content, attrs: (:), tag: "div") = html.elem(tag, html.frame(content), attrs: attrs)
 #let span-frame = div-frame.with(tag: "span")
 #let p-frame = div-frame.with(tag: "p")
+#let baseurl = "/typst-blog"
 
 
 // defaults
@@ -255,7 +256,7 @@
   show image: it => if is-web-target {
     if type(it.source) == str {
       html.elem("img", attrs: (
-        src: "/post_" + it.source,
+        src: baseurl + "/post_" + it.source,
       ))
     } else {
       it
@@ -299,7 +300,7 @@
 
   show: it => if is-same-kind {
     // set basic document metadata
-    set document(author: ("ParaN3xus",), ..if not is-web-target { (title: title) })
+    set document(author: ("Xuanzhe Xia",), ..if not is-web-target { (title: title) })
 
     // markup setting
     show: markup-rules
@@ -400,7 +401,7 @@
   if kind == "monthly" or is-same-kind [
     #metadata((
       title: plain-text(title),
-      author: "ParaN3xus",
+      author: "Xuanzhe Xia",
       description: plain-text(desc),
       date: date,
       tags: tags,
