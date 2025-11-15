@@ -388,7 +388,7 @@
         )
         v(-0.7em)
         [
-          #title © #date.slice(0, 4) by #link("https://blog.paran3x.us/")[ParaN3xus] is licensed under #link(url, text).
+          #title © #date.slice(0, 4) by #link("https://hz-xiaxz.github.io/typst-blog")[Xuanzhe Xia] is licensed under #link(url, text).
         ]
         v(-0.5em)
       }
