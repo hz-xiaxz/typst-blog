@@ -30,3 +30,5 @@ pnpm-workspace.yaml
 
 # local development files
 local/
+
+push_all.nu
