@@ -60,6 +60,7 @@
   vrchat: "VRChat",
   physics: "Physics",
   diy: "DIY",
+  stock: "Stock",
 )
 
 #let archive-tags = (
