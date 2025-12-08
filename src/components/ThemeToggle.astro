@@ -2,39 +2,43 @@
 import { Icon } from "astro-icon/components";
 ---
 
+<script is:inline>
+  // immediate run
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+</script>
+
 <label class="swap swap-rotate btn btn-ghost btn-circle">
   <input
     type="checkbox"
-    data-toggle-theme="dark,light"
-    data-act-class="ACTIVECLASS"
     id="theme-toggle"
+    class="theme-controller"
+    value="synthwave"
   />
+  
   <Icon name="ri:sun-line" size="24" class="swap-on text-yellow-500" />
   <Icon name="ri:moon-line" size="24" class="swap-off text-gray-500" />
-  <script>
-    import { themeChange } from "theme-change";
-    themeChange();
-  </script>
 </label>
 
 <script>
-  document.addEventListener("DOMContentLoaded", (): void => {
-    const themeToggle = document.getElementById(
-      "theme-toggle"
-    ) as HTMLInputElement;
-
-    if (!themeToggle) {
-      console.error("Theme toggle element not found");
-      return;
+  // load after the page
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle") as HTMLInputElement | null;
+    
+    // refetch current theme 
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    
+    // configure the toggle state 
+    if (themeToggle) {
+        themeToggle.checked = currentTheme === "light";
     }
 
-    const savedTheme: string = localStorage.getItem("theme") || "dark";
-
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    themeToggle.checked = savedTheme === "light";
-
-    themeToggle.addEventListener("change", (): void => {
-      const newTheme: string = themeToggle.checked ? "light" : "dark";
+    // listen for changes 
+    themeToggle?.addEventListener("change", (e) => {
+      const target = e.target as HTMLInputElement;
+      const newTheme = target.checked ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
       localStorage.setItem("theme", newTheme);
     });
   });
