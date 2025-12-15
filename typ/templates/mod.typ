@@ -23,21 +23,9 @@
   let id = {
     let title = plain-text(elem).trim()
     "label-"
-    str(
-      make-unique-label(
-        title,
-        disambiguator: label-disambiguator.at(elem.location()).at(title, default: 0) + 1,
-      ),
-    )
+    str(make-unique-label(title, disambiguator: label-disambiguator.at(elem.location()).at(title, default: 0) + 1))
   }
-  html.elem(
-    "a",
-    attrs: (
-      "href": "#" + id,
-      ..if body == "#" { ("id": id, "data-typst-label": id) },
-    ),
-    body,
-  )
+  html.elem("a", attrs: ("href": "#" + id, ..if body == "#" { ("id": id, "data-typst-label": id) }), body)
 }
 
 #let blog-tags = (
@@ -61,11 +49,11 @@
   physics: "Physics",
   diy: "DIY",
   stock: "Stock",
+  random: "Random",
+  emotions: "Emotions",
 )
 
-#let archive-tags = (
-  blog-post: "Blog Post",
-)
+#let archive-tags = (blog-post: "Blog Post")
 
 #let licenses = (
   cc-0: "cc-0",
@@ -78,31 +66,11 @@
 )
 
 #let license-info = (
-  "cc-0": (
-    url: "https://creativecommons.org/publicdomain/zero/1.0/",
-    text: "CC0 1.0",
-    icons: ("cc", "zero"),
-  ),
-  "cc-by": (
-    url: "https://creativecommons.org/licenses/by/4.0/",
-    text: "CC BY 4.0",
-    icons: ("cc", "by"),
-  ),
-  "cc-by-sa": (
-    url: "https://creativecommons.org/licenses/by-sa/4.0/",
-    text: "CC BY-SA 4.0",
-    icons: ("cc", "by", "sa"),
-  ),
-  "cc-by-nd": (
-    url: "https://creativecommons.org/licenses/by-nd/4.0/",
-    text: "CC BY-ND 4.0",
-    icons: ("cc", "by", "nd"),
-  ),
-  "cc-by-nc": (
-    url: "https://creativecommons.org/licenses/by-nc/4.0/",
-    text: "CC BY-NC 4.0",
-    icons: ("cc", "by", "nc"),
-  ),
+  "cc-0": (url: "https://creativecommons.org/publicdomain/zero/1.0/", text: "CC0 1.0", icons: ("cc", "zero")),
+  "cc-by": (url: "https://creativecommons.org/licenses/by/4.0/", text: "CC BY 4.0", icons: ("cc", "by")),
+  "cc-by-sa": (url: "https://creativecommons.org/licenses/by-sa/4.0/", text: "CC BY-SA 4.0", icons: ("cc", "by", "sa")),
+  "cc-by-nd": (url: "https://creativecommons.org/licenses/by-nd/4.0/", text: "CC BY-ND 4.0", icons: ("cc", "by", "nd")),
+  "cc-by-nc": (url: "https://creativecommons.org/licenses/by-nc/4.0/", text: "CC BY-NC 4.0", icons: ("cc", "by", "nc")),
   "cc-by-nc-sa": (
     url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     text: "CC BY-NC-SA 4.0",

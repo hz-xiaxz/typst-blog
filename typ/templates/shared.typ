@@ -21,14 +21,9 @@
 
 #let build-kind = sys.inputs.at("build-kind", default: default-kind)
 
-#let pdf-fonts = (
-  "Libertinus Serif",
-  "Noto Serif CJK SC",
-)
+#let pdf-fonts = ("Libertinus Serif", "Noto Serif CJK SC",)
 
-#let code-font = (
-  "DejaVu Sans Mono",
-)
+#let code-font = ("DejaVu Sans Mono",)
 
 // Sizes
 #let main-size = if sys-is-html-target {
@@ -82,12 +77,9 @@
 
 #let figure-rules(body) = {
   show figure: it => if is-web-target {
-    html.elem("div", it, attrs: (
-      ..if "label" in it.fields() and it.label != none {
-        (id: typst-label-prefix + str(it.label))
-      },
-      class: "jumpable",
-    ))
+    html.elem("div", it, attrs: (..if "label" in it.fields() and it.label != none {
+      (id: typst-label-prefix + str(it.label))
+    }, class: "jumpable"))
   } else {
     it
   }
@@ -100,12 +92,9 @@
   show math.equation.where(block: true): it => context if shiroa-sys-target() == "html" {
     theme-frame(
       tag: "div",
-      attrs: (
-        ..if "label" in it.fields() and it.label != none {
-          (id: typst-label-prefix + str(it.label))
-        },
-        class: "jumpable",
-      ),
+      attrs: (..if "label" in it.fields() and it.label != none {
+        (id: typst-label-prefix + str(it.label))
+      }, class: "jumpable"),
       theme => {
         set text(fill: theme.main-color)
         let real-body = {
@@ -115,24 +104,10 @@
             html.elem(
               "div",
               {
-                html.elem(
-                  "div",
-                  html.frame(math.equation(
-                    it.body,
-                    block: true,
-                    numbering: none,
-                  )),
-                  attrs: (class: "equation-body"),
-                )
-                html.elem(
-                  "div",
-                  context numbering(it.numbering, ..counter(math.equation).get()),
-                  attrs: (class: "equation-numbering"),
-                )
+                html.elem("div", html.frame(math.equation(it.body, block: true, numbering: none)), attrs: (class: "equation-body"))
+                html.elem("div", context numbering(it.numbering, ..counter(math.equation).get()), attrs: (class: "equation-numbering"))
               },
-              attrs: (
-                class: "equation-container",
-              ),
+              attrs: (class: "equation-container"),
             )
           }
         }
@@ -160,14 +135,10 @@
     }
 
     if it.element.func() == math.equation {
-      return html.elem("a", it, attrs: (
-        href: "#" + typst-label-prefix + str(it.element.label),
-      ))
+      return html.elem("a", it, attrs: (href: "#" + typst-label-prefix + str(it.element.label)))
     }
     if it.element.func() == figure {
-      return html.elem("a", it, attrs: (
-        href: "#" + typst-label-prefix + str(it.element.label),
-      ))
+      return html.elem("a", it, attrs: (href: "#" + typst-label-prefix + str(it.element.label)))
     }
     it
   } else {
@@ -238,14 +209,11 @@
 #let my-rules(body) = {
   show quote: it => {
     if is-web-target {
-      html.elem(
-        if it.block {
-          "blockquote"
-        } else {
-          "q"
-        },
-        it.body,
-      )
+      html.elem(if it.block {
+        "blockquote"
+      } else {
+        "q"
+      }, it.body)
     } else {
       it
     }
@@ -255,9 +223,7 @@
   // html image path fix
   show image: it => if is-web-target {
     if type(it.source) == str {
-      html.elem("img", attrs: (
-        src: baseurl + "/post_" + it.source,
-      ))
+      html.elem("img", attrs: (src: baseurl + "/post_" + it.source))
     } else {
       it
     }
@@ -337,12 +303,9 @@
     set heading(numbering: "1.1")
     it
   } else if build-kind == "monthly" and kind == "post" {
-    set page(numbering: "1", header: context align(
-      if calc.even(here().page()) { right } else { left },
-      emph[
-        #date -- #title
-      ],
-    )) if not sys-is-html-target
+    set page(numbering: "1", header: context align(if calc.even(here().page()) { right } else { left }, emph[
+      #date -- #title
+    ])) if not sys-is-html-target
     set heading(offset: 1) if not sys-is-html-target // globally increase offset
     it
   } else {
@@ -379,13 +342,9 @@
         let url = license-info.at(license).url
         let text = license-info.at(license).text
         let icons = license-info.at(license).icons
-        grid(
-          columns: icons.len(),
-          column-gutter: 0.2em,
-          ..icons.map(x => {
-            image("assets/license-icons/" + x + ".svg", width: 1em)
-          })
-        )
+        grid(columns: icons.len(), column-gutter: 0.2em, ..icons.map(x => {
+          image("assets/license-icons/" + x + ".svg", width: 1em)
+        }))
         v(-0.7em)
         [
           #title © #date.slice(0, 4) by #link("https://hz-xiaxz.github.io/typst-blog")[Xuanzhe Xia] is licensed under #link(url, text).
@@ -419,23 +378,11 @@
 
     let outline-counter = counter("html-outline")
     outline-counter.update(0)
-    show outline.entry: it => html.elem(
-      "div",
-      attrs: (
-        class: "outline-item x-heading-" + str(it.level),
-      ),
-      {
-        outline-counter.step(level: it.level)
-        static-heading-link(it.element, body: [#sym.section#context outline-counter.display("1.") #it.element.body])
-      },
-    )
-    html.elem(
-      "div",
-      attrs: (
-        class: "outline",
-      ),
-      outline(title: none),
-    )
+    show outline.entry: it => html.elem("div", attrs: (class: "outline-item x-heading-" + str(it.level)), {
+      outline-counter.step(level: it.level)
+      static-heading-link(it.element, body: [#sym.section#context outline-counter.display("1.") #it.element.body])
+    })
+    html.elem("div", attrs: (class: "outline"), outline(title: none))
     html.elem("hr")
   }
 
@@ -447,17 +394,13 @@
 
   context if is-same-kind and sys-is-html-target {
     query(footnote)
-      .enumerate()
-      .map(((idx, it)) => {
-        enum.item[
-          #html.elem(
-            "div",
-            attrs: ("data-typst-label": "footnote-" + str(idx + 1)),
-            it.body,
-          )
-        ]
-      })
-      .join()
+    .enumerate()
+    .map(((idx, it)) => {
+      enum.item[
+        #html.elem("div", attrs: ("data-typst-label": "footnote-" + str(idx + 1)), it.body)
+      ]
+    })
+    .join()
   }
 }
 
