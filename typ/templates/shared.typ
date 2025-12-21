@@ -2,7 +2,7 @@
 #import "@preview/lovelace:0.3.0": line-label, pseudocode-list
 #import "@preview/zebraw:0.6.1": zebraw, zebraw-init
 #import "@preview/numbly:0.1.0": numbly
-#import "@preview/shiroa:0.2.3": is-html-target, is-pdf-target, is-web-target, plain-text, templates
+#import "@preview/shiroa:0.3.1": is-html-target, is-pdf-target, is-web-target, plain-text, templates
 #import templates: *
 #import "mod.typ": *
 #import "theme.typ": *
