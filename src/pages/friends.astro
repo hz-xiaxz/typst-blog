@@ -10,40 +10,25 @@ import BlogPostLayout from "$layouts/BlogPostLayout.astro";
   date={new Date("2025-12-21")}
 >
   <main class="not-prose mt-8">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-0 list-none">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {
         kFriendLinks.map((link) => (
-          <li class="m-0">
-            <a 
-              href={link.url} 
-              target="_blank" 
-              class="relative group block p-4 h-full no-underline rounded-xl transition-all duration-300
-                     /* 默认状态：极淡的底色和细边框 */
-                     bg-zinc-50/80 dark:bg-zinc-900/40 
-                     border border-zinc-200/50 dark:border-zinc-800/50
-                     /* 悬停状态：底色加深，边框显现 */
-                     hover:bg-blue-50/50 dark:hover:bg-blue-900/20 
-                     hover:border-blue-200 dark:hover:border-blue-800
-                     hover:shadow-sm"
-            >
-              <!-- 装饰用：左侧悬停变色的小条 -->
-              <div class="absolute left-0 top-4 bottom-4 w-1 rounded-r-full bg-transparent group-hover:bg-blue-500 transition-colors"></div>
-
-              <div class="flex flex-col gap-1 pl-1">
-                <span class="font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-1">
-                  {link.name}
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </span>
-                <p class="text-sm text-zinc-500 dark:text-zinc-400 m-0 line-clamp-2 leading-relaxed">
-                  {link.desc}
-                </p>
-              </div>
-            </a>
-          </li>
+          <a 
+            href={link.url} 
+            target="_blank" 
+            class="group block p-4 no-underline rounded-lg border border-zinc-200 bg-white hover:bg-zinc-50 hover:border-zinc-300 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-700 transition-all duration-200"
+          >
+            <div class="flex flex-col gap-1">
+              <span class="font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                {link.name}
+              </span>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 m-0">
+                {link.desc}
+              </p>
+            </div>
+          </a>
         ))
       }
-    </ul>
+    </div>
   </main>
 </BlogPostLayout>
