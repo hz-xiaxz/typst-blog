@@ -51,7 +51,14 @@ export const kGiscusConfig = {
 /**
  * The friend link info.
  */
-export const kFriendLinks = [];
+export const kFriendLinks = [
+  {
+    name: "Wentao Li",
+    url: "https://wentaoli.xyz/",
+    icon: "ri:global-fill",
+    desc: "The Knowledge Garden of Wentao Li",
+},
+];
 
 
 /**
