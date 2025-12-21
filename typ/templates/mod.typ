@@ -2,7 +2,7 @@
 #import "@preview/fletcher:0.5.7"
 #import "target.typ": sys-is-html-target
 #import "theme.typ": theme-frame
-#import "@preview/shiroa:0.2.3": plain-text, templates
+#import "@preview/shiroa:0.3.1": plain-text, templates
 #import templates: get-label-disambiguator, label-disambiguator, make-unique-label
 
 #let code-image = if sys-is-html-target {
