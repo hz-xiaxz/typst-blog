@@ -2,7 +2,7 @@
 #import "@preview/lovelace:0.3.0": line-label, pseudocode-list
 #import "@preview/zebraw:0.5.4": zebraw, zebraw-init
 #import "@preview/numbly:0.1.0": numbly
-#import "@preview/shiroa:0.3.1": is-html-target, is-pdf-target, is-web-target, plain-text, templates
+#import "@preview/shiroa:0.3.1": is-html-target, is-pdf-target, is-web-target, plain-text, templates,x-target
 #import templates: *
 #import "mod.typ": *
 #import "theme.typ": *
@@ -10,7 +10,7 @@
 // Metadata
 #let is-html-target = is-html-target()
 #let is-pdf-target = is-pdf-target()
-#let is-md-target = target == "md"
+#let is-md-target = x-target == "md"
 #let sys-is-html-target = ("target" in dictionary(std))
 #let is-web-target = is-web-target() or sys-is-html-target
 
