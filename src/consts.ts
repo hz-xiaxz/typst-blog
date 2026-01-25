@@ -57,7 +57,13 @@ export const kFriendLinks = [
     url: "https://wentaoli.xyz/",
     icon: "ri:global-fill",
     desc: "The Knowledge Garden of Wentao Li",
-},
+  },
+  {
+    name: "十派",
+    url: "https://meredith2328.github.io/",
+    icon: "ri:global-fill",
+    desc: "十派的玩具箱",
+  }
 ];
 
 
