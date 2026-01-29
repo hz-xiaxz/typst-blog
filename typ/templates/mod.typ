@@ -51,6 +51,7 @@
   stock: "Stock",
   random: "Random",
   emotions: "Emotions",
+  improvement: "Personal-Improvement",
 )
 
 #let archive-tags = (blog-post: "Blog Post")
