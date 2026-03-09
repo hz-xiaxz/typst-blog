@@ -1,4 +1,4 @@
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { existsSync } from "fs";
 import { execSync } from "child_process";
 import { join } from "path";
@@ -30,17 +30,6 @@ async function main() {
   );
 
   await writeFile(dest, content, "utf-8");
-  console.log(`Created new post at ${dest}`);
-
-  const arts = (await readdir(join(root, `content/article`)))
-    .map((it) => it.replace(/\.typ$/g, ""))
-    .sort();
-  await writeFile(
-    join(root, `typ/templates/articles.json`),
-    JSON.stringify(arts, null, 1),
-    "utf-8"
-  );
-
   console.log(`Created new post at ${dest}`);
 
   if (process.env.TERM_PROGRAM === "vscode") {
