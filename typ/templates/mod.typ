@@ -28,31 +28,7 @@
   html.elem("a", attrs: ("href": "#" + id, ..if body == "#" { ("id": id, "data-typst-label": id) }), body)
 }
 
-#let blog-tags = (
-  linux: "Linux",
-  network: "Network",
-  free-ride: "Free Ride",
-  math: "Mathematics",
-  thinking: "Thinking",
-  cpp: "C++",
-  probablities: "Probabilities",
-  crack: "Crack",
-  typst: "Typst",
-  summary: "Summary",
-  python: "Python",
-  ai: "AI",
-  pytorch: "PyTorch",
-  rl: "Reinforcement Learning",
-  programming: "Programming",
-  reverse: "Reverse Engineering",
-  vrchat: "VRChat",
-  physics: "Physics",
-  diy: "DIY",
-  stock: "Stock",
-  random: "Random",
-  emotions: "Emotions",
-  improvement: "Personal-Improvement",
-)
+#let blog-tags = json("/content/blog-tags.json")
 
 #let archive-tags = (blog-post: "Blog Post")
 
@@ -85,5 +61,3 @@
 )
 
 
-
-#let articles = json("articles.json").map(it => ((it): it)).join()
