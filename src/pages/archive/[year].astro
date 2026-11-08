@@ -30,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   ].sort((a, b) => b - a);
 
   return allYears.map((year) => ({
-    params: { year },
+    params: { year: String(year) },
     props: { year },
   }));
 };

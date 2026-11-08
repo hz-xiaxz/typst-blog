@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import { typst } from "astro-typst";
 import { loadEnv } from "vite";
 import icon from "astro-icon";
+import tailwindcss from "@tailwindcss/vite";
 import copyAssetsIntegration from './integrations/copy-assets.js';
 import { resolve } from "path";
 
@@ -52,6 +53,7 @@ export default defineConfig({
   ],
 
   vite: {
+    plugins: [tailwindcss()],
     build: {
       assetsInlineLimit(filePath, content) {
         const KB = 1024;
