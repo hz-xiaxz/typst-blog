@@ -29,34 +29,33 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Cache Node Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cache/yarn/v6
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          # node_modules holds native binaries (sharp, typst-ts), so key on the Node major too
+          key: ${{ runner.os }}-node26-yarn-${{ hashFiles('yarn.lock') }}
 
       - name: Install dependencies with Yarn
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
+        run: yarn install --frozen-lockfile
 
       - name: Sync Environment Variables
         run: cp content/.env.blog .env
 
       - name: Cache Fonts
         id: cache-fonts
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ./assets/fonts
           key: fonts-noto-serif-2.003-sans-2.004
@@ -80,9 +79,9 @@ jobs:
       - name: Build Blog
         run: yarn build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -207,6 +207,19 @@
 }
 
 #let my-rules(body) = {
+  // footnote: use Typst's native HTML footnotes, numbered back-links in entries
+  show: it => if sys-is-html-target {
+    show footnote.entry: x => {
+      let loc = x.note.location()
+      link(loc, counter(footnote).display(at: loc, "1"))
+      [ ]
+      x.note.body
+    }
+    it
+  } else {
+    it
+  }
+
   show quote: it => {
     if is-web-target {
       html.elem(if it.block {
@@ -280,16 +293,6 @@
     show: code-block-rules
     // my
     show: my-rules
-
-    show: it => if sys-is-html-target {
-      show footnote: it => context {
-        let num = counter(footnote).get().at(0)
-        link(label("footnote-" + str(num)), super(str(num)))
-      }
-      it
-    } else {
-      it
-    }
 
     // Main body.
     set par(justify: true)
@@ -390,17 +393,6 @@
     archive-creator(archive-indices, body)
   } else {
     body
-  }
-
-  context if is-same-kind and sys-is-html-target {
-    query(footnote)
-    .enumerate()
-    .map(((idx, it)) => {
-      enum.item[
-        #html.elem("div", attrs: ("data-typst-label": "footnote-" + str(idx + 1)), it.body)
-      ]
-    })
-    .join()
   }
 }
 

@@ -63,7 +63,13 @@ export const kFriendLinks = [
     url: "https://meredith2328.github.io/",
     icon: "ri:global-fill",
     desc: "十派的玩具箱",
-  }
+  },
+  {
+    name: "Yanlin Fu",
+    url: "https://10eit.github.io/",
+    icon: "ri:global-fill",
+    desc: "Yanlin's Homepage",
+  },
 ];
 
 
